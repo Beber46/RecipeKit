@@ -12,7 +12,7 @@ import com.beber.bdd.Repository;
 import com.beber.object.Composition;
 
 /**
- * Cette classe permet de faire toutes les opérations en base pour l'objet {@link com.beber.object.Composition}.
+ * Cette classe permet de faire toutes les opÃ©rations en base pour l'objet {@link com.beber.object.Composition}.
  *
  * @author Beber46
  * @version 1.0
@@ -20,12 +20,12 @@ import com.beber.object.Composition;
 public class CompositionRepo  extends Repository<Composition>{
 
     /**
-     * Tag à utiliser pour le LOG
+     * Tag Ã  utiliser pour le LOG
      */
 	private static final String TAG = "CompositionRepo";
 
     /**
-     * Champs en base de données de {@link com.beber.object.Composition}
+     * Champs en base de donnÃ©es de {@link com.beber.object.Composition}
      */
 	private final String[] mColumn = new String[]{
 			BDD.COMPOSITION_COLUMN_ID,
@@ -45,9 +45,9 @@ public class CompositionRepo  extends Repository<Composition>{
 	}
 
     /**
-     * Permet de récupérer la liste des Compositions.
+     * Permet de rÃ©cupÃ©rer la liste des Compositions.
      *
-     * @return La liste des compositions trouvée.
+     * @return La liste des compositions trouvÃ©e.
      */
 	@Override
 	public List<Composition> GetAll() {
@@ -59,10 +59,10 @@ public class CompositionRepo  extends Repository<Composition>{
 	}
 
     /**
-     * Permet de récupérer une compositino en fonction de son identifiant <code>id</code>.
+     * Permet de rÃ©cupÃ©rer une compositino en fonction de son identifiant <code>id</code>.
      *
      * @param id Identifiant d'une composition.
-     * @return La composition trouvé.
+     * @return La composition trouvÃ©.
      */
 	@Override
 	public Composition GetById(final Integer id) {
@@ -76,7 +76,7 @@ public class CompositionRepo  extends Repository<Composition>{
     /**
      * Permet d'enregistrer une composition.
      *
-     * @param composition à enregistrer.
+     * @param composition Ã  enregistrer.
      */
 	@Override
 	public void Save(final Composition composition) {
@@ -89,9 +89,9 @@ public class CompositionRepo  extends Repository<Composition>{
 	}
 
     /**
-     * Permet de mettre à jour une composition.
+     * Permet de mettre Ã  jour une composition.
      *
-     * @param composition à mettre à jour.
+     * @param composition Ã  mettre Ã  jour.
      */
 	@Override
 	public void Update(final Composition composition) {
@@ -103,9 +103,9 @@ public class CompositionRepo  extends Repository<Composition>{
 	}
 
     /**
-     * Permet de créer un ContentValues à partir d'une composition.
+     * Permet de crÃ©er un ContentValues Ã  partir d'une composition.
      *
-     * @param composition à convertir.
+     * @param composition Ã  convertir.
      * @return Le contentValues obtenu.
      */
     private ContentValues getContentValues(final Composition composition){
@@ -116,7 +116,7 @@ public class CompositionRepo  extends Repository<Composition>{
         contentValues.put(mColumn[3], composition.getQuantite());
         contentValues.put(mColumn[4], composition.getIdUnit());
 
-        return ContentValues;
+        return contentValues;
     }
 
     /**
@@ -132,9 +132,9 @@ public class CompositionRepo  extends Repository<Composition>{
 	}
 
     /**
-     * Méthode utilisée par {@link #ConvertCursorToObject(Cursor)} et {@link #ConvertCursorToListObject(Cursor)}.
+     * MÃ©thode utilisÃ©e par {@link #ConvertCursorToObject(Cursor)} et {@link #ConvertCursorToListObject(Cursor)}.
      *
-     * @param cursor à convertir.
+     * @param cursor Ã  convertir.
      * @return Une compositiion.
      */
 	@Override
@@ -143,10 +143,10 @@ public class CompositionRepo  extends Repository<Composition>{
 		final Composition exec = new Composition();
 		
 		exec.setId(cursor.getInt(BDD.COMPOSITION_NUM_ID));
-		exec.setId_produit(cursor.getInt(BDD.COMPOSITION_NUM_ID_PRODUIT));
-		exec.setId_recette(cursor.getInt(BDD.COMPOSITION_NUM_ID_RECETTE));
+		exec.setIdProduit(cursor.getInt(BDD.COMPOSITION_NUM_ID_PRODUIT));
+		exec.setIdRecette(cursor.getInt(BDD.COMPOSITION_NUM_ID_RECETTE));
 		exec.setQuantite(cursor.getInt(BDD.COMPOSITION_NUM_QUANTITE));
-		exec.setId_unit(cursor.getInt(BDD.COMPOSITION_NUM_ID_UNIT));
+		exec.setIdUnit(cursor.getInt(BDD.COMPOSITION_NUM_ID_UNIT));
 
 		return exec;
 	}

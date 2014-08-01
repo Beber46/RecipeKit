@@ -1,5 +1,6 @@
 package com.beber.bdd;
 
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import com.beber.object.Composition;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe abstract permettant de définir les principales méthodes à utiliser dans les classes repos.
+ * Classe abstract permettant de dÃ©finir les principales mÃ©thodes Ã  utiliser dans les classes repos.
  *
  * @author Beber46
  * @version 1.0
@@ -47,11 +48,10 @@ public abstract class Repository<T> implements IRepository<T>{
     /**
      * Permet de convertire un {@link android.database.Cursor} en liste de {@link T}.
      *
-     * @param cursor à convertir.
-     * @return Une liste de {@link T} trouvé.
+     * @param cursor Ã  convertir.
+     * @return Une liste de {@link T} trouvÃ©.
      */
-    //TODO: vérifier que cela marche
-    @Override
+    //TODO: vÃ©rifier que cela marche
     public List<T> ConvertCursorToListObject(final Cursor cursor) {
         final List<T> liste = new ArrayList<T>();
 
@@ -72,17 +72,16 @@ public abstract class Repository<T> implements IRepository<T>{
     /**
      * Permet de convertire un {@link android.database.Cursor} en {@link T}.
      *
-     * @param cursor à convertir.
-     * @return {@link T} trouvé.
+     * @param cursor Ã  convertir.
+     * @return {@link T} trouvÃ©.
      */
-    //TODO: vérifier que cela marche
-    @Override
+    //TODO: vÃ©rifier que cela marche
     public T ConvertCursorToOneObject(final Cursor cursor) {
-        c.moveToFirst();
+        cursor.moveToFirst();
 
-        final T exec = ConvertCursorToObject(c);
+        final T exec = ConvertCursorToObject(cursor);
 
-        c.close();
+        cursor.close();
         return exec;
     }
 }
