@@ -11,120 +11,121 @@ import fr.beber.object.Unit;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Cette classe permet de faire toutes les opérations en base pour l'objet {@link Unit}.
+ *
+ * @author Beber46
+ * @version 1.0
+ */
 public class UnitRepo extends Repository<Unit>{
-	
+
+    /**
+     * Tag à utiliser pour le LOG
+     */
 	private static final String TAG = "UnitRepo";
-	
+
+    /**
+     * Champs en base de données de {@link Unit}
+     */
 	private String[] mColumn = new String[]{
 			BDD.PRODUIT_COLUMN_ID,
 			BDD.PRODUIT_COLUMN_NAME
 	};
 
-	public UnitRepo(Context ctx){
-		mSQLOH = new BDD(ctx, null);
+    /**
+     * Constructeur
+     * @param context
+     */
+	public UnitRepo(final Context context){
+		mSQLOH = new BDD(context, null);
 	}
 
-	/**
-	 * R�cup�ration des la liste des Unit
-	 */
+    /**
+     * Permet de récupérer la liste d'unité.
+     *
+     * @return La liste des compositions trouvée.
+     */
 	@Override
 	public List<Unit> GetAll() {
-		Cursor c = mBDD.query(BDD.TN_UNIT, mColumn , null, null, null, null, null);
-		
-		return ConvertCursorToListObject(c);
+        Log.d(TAG, "Entree");
+		final Cursor cursor = mBDD.query(BDD.TN_UNIT, mColumn , null, null, null, null, null);
+
+        Log.d(TAG, "Sortie");
+		return ConvertCursorToListObject(cursor);
 	}
 
+    /**
+     * Permet de récupérer une unité en fonction de son identifiant <code>id</code>.
+     *
+     * @param id Identifiant d'une unité.
+     * @return L'unité trouvé.
+     */
 	@Override
-	public Unit GetById(Integer id) {
-		Cursor c = mBDD.query(BDD.TN_UNIT, mColumn , String.valueOf(id), null, null, null, null);
-		
-		return ConvertCursorToObject(c);
+	public Unit GetById(final Integer id) {
+        Log.d(TAG, "Entree");
+		final Cursor cursor = mBDD.query(BDD.TN_UNIT, mColumn , String.valueOf(id), null, null, null, null);
+
+        Log.d(TAG, "Sortie");
+		return ConvertCursorToObject(cursor);
 	}
-	
-	/**
-	 * Enregistre un unit
-	 */
+
+    /**
+     * Permet d'enregistrer une unité.
+     *
+     * @param unit à enregistrer.
+     */
 	@Override
-	public void Save(Unit entite) {
-		Log.d(TAG, "Entree Save");
+	public void Save(final Unit unit) {
+		Log.d(TAG, "Entree");
 		ContentValues contentValues = new ContentValues();
 
-		contentValues.put(mColumn[1], entite.getName());
+		contentValues.put(mColumn[1], unit.getName());
 		
 		mBDD.insert(BDD.TN_UNIT, null, contentValues);
-		Log.d(TAG, "Sortie Save");
+		Log.d(TAG, "Sortie");
 	}
 
-	/**
-	 * Met � jour le unit
-	 */
+    /**
+     * Permet de mettre à jour une unité.
+     *
+     * @param unit à mettre à jour.
+     */
 	@Override
-	public void Update(Unit entite) {
-		Log.d(TAG, "Entree Update");
-		ContentValues contentValues = new ContentValues();
+	public void Update(final Unit unit) {
+		Log.d(TAG, "Entree");
+		final ContentValues contentValues = new ContentValues();
 
-		contentValues.put(mColumn[1], entite.getName());
+		contentValues.put(mColumn[1], unit.getName());
 		
-		mBDD.update(BDD.TN_UNIT, contentValues, mColumn[0] + "=?", new String[]{String.valueOf(entite.getId())});
-		Log.d(TAG, "Sortie Update");
+		mBDD.update(BDD.TN_UNIT, contentValues, mColumn[0] + "=?", new String[]{String.valueOf(unit.getId())});
+		Log.d(TAG, "Sortie");
 	}
 
-	/**
-	 * Supprimer un unit
-	 */
+    /**
+     * Permet de supprimer une unité.
+     *
+     * @param id Identifiant d'une unité.
+     */
 	@Override
-	public void Delete(Integer id) {
-		Log.d(TAG, "Entree Delete");
+	public void Delete(final Integer id) {
+		Log.d(TAG, "Entree");
 		mBDD.delete(BDD.TN_UNIT, mColumn[0] + "=?", new String[]{String.valueOf(id)});
-		Log.d(TAG, "Sortie Delete");
+		Log.d(TAG, "Sortie");
 	}
 
-	/**
-	 * Converti un curseur en une liste de units
-	 */
+    /**
+     * Méthode utilisée par {@link #ConvertCursorToObject(android.database.Cursor)} et {@link #ConvertCursorToListObject(android.database.Cursor)}.
+     *
+     * @param cursor à convertir.
+     * @return Une unité.
+     */
 	@Override
-	public List<Unit> ConvertCursorToListObject(Cursor c) {
-		List<Unit> liste = new ArrayList<Unit>();
-		// Si la liste est vide
-		if (c.getCount() == 0)
-			return liste;
-		// position sur le premeir item
-		c.moveToFirst();
-		// Pour chaque item
-		do {
-			Unit exec = ConvertCursorToObject(c);
-			liste.add(exec);
-		} while (c.moveToNext());
-		// Fermeture du curseur
-		c.close();
-
-		return liste;
-	}
-
-	/**
-	 * M�thode utilis�e par ConvertCursorToObject et ConvertCursorToListObject
-	 */
-	@Override
-	public Unit ConvertCursorToObject(Cursor c) {
+	public Unit ConvertCursorToObject(final Cursor cursor) {
 		
-		Unit exec = new Unit();
+		final Unit exec = new Unit();
+		exec.setId(cursor.getInt(BDD.UNIT_NUM_ID));
+		exec.setName(cursor.getString(BDD.UNIT_NUM_NAME));
 		
-		exec.setId(c.getInt(BDD.PRODUIT_NUM_ID));
-		exec.setName(c.getString(BDD.PRODUIT_NUM_NAME));
-		
-		return exec;
-	}
-	
-	/**
-	 * Converti un curseur en un unit
-	 */
-	@Override
-	public Unit ConvertCursorToOneObject(Cursor c) {
-		c.moveToFirst();
-		
-		Unit exec = ConvertCursorToObject(c);
-		
-		c.close();
 		return exec;
 	}
 
