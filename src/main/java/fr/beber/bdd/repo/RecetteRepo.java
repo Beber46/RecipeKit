@@ -11,121 +11,123 @@ import fr.beber.object.Recette;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Cette classe permet de faire toutes les opérations en base pour l'objet {@link Recette}.
+ *
+ * @author Beber46
+ * @version 1.0
+ */
 public class RecetteRepo extends Repository<Recette> {
-	
+
+    /**
+     * Tag à utiliser pour le LOG
+     */
 	private static final String TAG = "RecetteRepo";
-	
+
+    /**
+     * Champs en base de données de {@link Recette}
+     */
 	private String[] mColumn = new String[]{
 			BDD.PRODUIT_COLUMN_ID,
 			BDD.PRODUIT_COLUMN_NAME
 	};
 
-	public RecetteRepo(Context ctx){
-		mSQLOH = new BDD(ctx, null);
+    /**
+     * Constructeur
+     * @param context
+     */
+	public RecetteRepo(final Context context){
+		mSQLOH = new BDD(context, null);
 	}
 
-	/**
-	 * R�cup�ration des la liste des Recette
-	 */
+    /**
+     * Permet de récupérer la liste des recettes.
+     *
+     * @return La liste des recettes trouvée.
+     */
 	@Override
 	public List<Recette> GetAll() {
-		Cursor c = mBDD.query(BDD.TN_RECETTE, mColumn , null, null, null, null, null);
-		
-		return ConvertCursorToListObject(c);
+        Log.d(TAG, "Entree");
+		final Cursor cursor = mBDD.query(BDD.TN_RECETTE, mColumn , null, null, null, null, null);
+
+        Log.d(TAG, "Sortie");
+		return ConvertCursorToListObject(cursor);
 	}
 
+    /**
+     * Permet de récupérer une recette en fonction de son identifiant <code>id</code>.
+     *
+     * @param id Identifiant d'une recette.
+     * @return La recette trouvé.
+     */
 	@Override
-	public Recette GetById(Integer id) {
-		Cursor c = mBDD.query(BDD.TN_RECETTE, mColumn , String.valueOf(id), null, null, null, null);
-		
-		return ConvertCursorToObject(c);
-	}
-	
-	/**
-	 * Enregistre un recette
-	 */
-	@Override
-	public void Save(Recette entite) {
-		Log.d(TAG, "Entree Save");
-		ContentValues contentValues = new ContentValues();
+	public Recette GetById(final Integer id) {
+        Log.d(TAG, "Entree");
+		final Cursor cursor = mBDD.query(BDD.TN_RECETTE, mColumn , String.valueOf(id), null, null, null, null);
 
-		contentValues.put(mColumn[1], entite.getName());
+        Log.d(TAG, "Sortie");
+		return ConvertCursorToObject(cursor);
+	}
+
+    /**
+     * Permet d'enregistrer une recette.
+     *
+     * @param recette à enregistrer.
+     */
+	@Override
+	public void Save(final Recette recette) {
+		Log.d(TAG, "Entree");
+		final ContentValues contentValues = new ContentValues();
+
+		contentValues.put(mColumn[1], recette.getName());
 		
 		mBDD.insert(BDD.TN_RECETTE, null, contentValues);
-		Log.d(TAG, "Sortie Save");
+		Log.d(TAG, "Sortie");
 	}
 
-	/**
-	 * Met � jour le recette
-	 */
+    /**
+     * Permet de mettre à jour une recette.
+     *
+     * @param recette à mettre à jour.
+     */
 	@Override
-	public void Update(Recette entite) {
-		Log.d(TAG, "Entree Update");
-		ContentValues contentValues = new ContentValues();
+	public void Update(final Recette recette) {
+		Log.d(TAG, "Entree");
+		final ContentValues contentValues = new ContentValues();
 
-		contentValues.put(mColumn[1], entite.getName());
+		contentValues.put(mColumn[1], recette.getName());
 		
-		mBDD.update(BDD.TN_RECETTE, contentValues, mColumn[0] + "=?", new String[]{String.valueOf(entite.getId())});
-		Log.d(TAG, "Sortie Update");
+		mBDD.update(BDD.TN_RECETTE, contentValues, mColumn[0] + "=?", new String[]{String.valueOf(recette.getId())});
+		Log.d(TAG, "Sortie");
 	}
 
-	/**
-	 * Supprimer un recette
-	 */
+    /**
+     * Permet de supprimer une recette en fonction de son identifiant.
+     *
+     * @param id Identifiant d'une recette.
+     */
 	@Override
-	public void Delete(Integer id) {
+	public void Delete(final Integer id) {
 		Log.d(TAG, "Entree Delete");
 		mBDD.delete(BDD.TN_RECETTE, mColumn[0] + "=?", new String[]{String.valueOf(id)});
 		Log.d(TAG, "Sortie Delete");
 	}
 
-	/**
-	 * Converti un curseur en une liste de recettes
-	 */
+    /**
+     * Méthode utilisée par {@link #ConvertCursorToObject(android.database.Cursor)} et {@link #ConvertCursorToListObject(android.database.Cursor)}.
+     *
+     * @param cursor à convertir.
+     * @return Une compositiion.
+     */
 	@Override
-	public List<Recette> ConvertCursorToListObject(Cursor c) {
-		List<Recette> liste = new ArrayList<Recette>();
-		// Si la liste est vide
-		if (c.getCount() == 0)
-			return liste;
-		// position sur le premeir item
-		c.moveToFirst();
-		// Pour chaque item
-		do {
-			Recette exec = ConvertCursorToObject(c);
-			liste.add(exec);
-		} while (c.moveToNext());
-		// Fermeture du curseur
-		c.close();
-
-		return liste;
-	}
-
-	/**
-	 * M�thode utilis�e par ConvertCursorToObject et ConvertCursorToListObject
-	 */
-	@Override
-	public Recette ConvertCursorToObject(Cursor c) {
+	public Recette ConvertCursorToObject(final Cursor cursor) {
 		
-		Recette exec = new Recette();
+		final Recette exec = new Recette();
 		
-		exec.setId(c.getInt(BDD.PRODUIT_NUM_ID));
-		exec.setName(c.getString(BDD.PRODUIT_NUM_NAME));
+		exec.setId(cursor.getInt(BDD.RECETTE_NUM_ID));
+		exec.setName(cursor.getString(BDD.RECETTE_NUM_NAME));
 		
 		return exec;
 	}
 	
-	/**
-	 * Converti un curseur en un recette
-	 */
-	@Override
-	public Recette ConvertCursorToOneObject(Cursor c) {
-		c.moveToFirst();
-		
-		Recette exec = ConvertCursorToObject(c);
-		
-		c.close();
-		return exec;
-	}
-
 }

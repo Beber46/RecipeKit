@@ -36,7 +36,6 @@ public class CompositionRepo  extends Repository<Composition> {
 
     /**
      * Constructeur
-     *
      * @param context
      */
 	public CompositionRepo(final Context context){
