@@ -57,7 +57,7 @@ public interface IRepository<T> {
     public List<T> ConvertCursorToListObject(Cursor cursor);
 
     /**
-     * Màthode utilisàe par {@link #ConvertCursorToObject(android.database.Cursor)} et {@link #ConvertCursorToListObject(android.database.Cursor)}.
+     * Méthode utilisée par {@link #ConvertCursorToObject(android.database.Cursor)} et {@link #ConvertCursorToListObject(android.database.Cursor)}.
      *
      * @param cursor à convertir.
      * @return Une compositiion.
