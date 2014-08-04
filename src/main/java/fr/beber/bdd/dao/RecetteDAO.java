@@ -48,12 +48,12 @@ public class RecetteDAO extends Repository<Recette> {
      * @return La liste des recettes trouvée.
      */
 	@Override
-	public List<Recette> GetAll() {
+	public List<Recette> getAll() {
         Log.d(TAG, "Entree");
 		final Cursor cursor = mBDD.query(BDD.TN_RECETTE, mColumn , null, null, null, null, null);
 
         Log.d(TAG, "Sortie");
-		return ConvertCursorToListObject(cursor);
+		return convertCursorToListObject(cursor);
 	}
 
     /**
@@ -63,12 +63,12 @@ public class RecetteDAO extends Repository<Recette> {
      * @return La recette trouvé.
      */
 	@Override
-	public Recette GetById(final Integer id) {
+	public Recette getById(final Integer id) {
         Log.d(TAG, "Entree");
 		final Cursor cursor = mBDD.query(BDD.TN_RECETTE, mColumn , String.valueOf(id), null, null, null, null);
 
         Log.d(TAG, "Sortie");
-		return ConvertCursorToObject(cursor);
+		return convertCursorToObject(cursor);
 	}
 
     /**
@@ -77,7 +77,7 @@ public class RecetteDAO extends Repository<Recette> {
      * @param recette à enregistrer.
      */
 	@Override
-	public void Save(final Recette recette) {
+	public void save(final Recette recette) {
 		Log.d(TAG, "Entree");
 		final ContentValues contentValues = new ContentValues();
 
@@ -93,7 +93,7 @@ public class RecetteDAO extends Repository<Recette> {
      * @param recette à mettre à jour.
      */
 	@Override
-	public void Update(final Recette recette) {
+	public void update(final Recette recette) {
 		Log.d(TAG, "Entree");
 		final ContentValues contentValues = new ContentValues();
 
@@ -109,10 +109,10 @@ public class RecetteDAO extends Repository<Recette> {
      * @param id Identifiant d'une recette.
      */
 	@Override
-	public void Delete(final Integer id) {
-		Log.d(TAG, "Entree Delete");
+	public void delete(final Integer id) {
+		Log.d(TAG, "Entree delete");
 		mBDD.delete(BDD.TN_RECETTE, mColumn[0] + "=?", new String[]{String.valueOf(id)});
-		Log.d(TAG, "Sortie Delete");
+		Log.d(TAG, "Sortie delete");
 	}
 
     /**
@@ -122,7 +122,7 @@ public class RecetteDAO extends Repository<Recette> {
      * @return Une compositiion.
      */
 	@Override
-	public Recette ConvertCursorToObject(final Cursor cursor) {
+	public Recette convertCursorToObject(final Cursor cursor) {
 		
 		final Recette exec = new Recette();
 		

@@ -48,12 +48,12 @@ public class CompositionDAO extends Repository<Composition> {
      * @return La liste des compositions trouvée.
      */
 	@Override
-	public List<Composition> GetAll() {
+	public List<Composition> getAll() {
         Log.d(TAG, "Entree");
 		final Cursor c = mBDD.query(BDD.TN_COMPOSITION, mColumn , null, null, null, null, null);
 
         Log.d(TAG, "Sortie");
-		return ConvertCursorToListObject(c);
+		return this.convertCursorToListObject(c);
 	}
 
     /**
@@ -63,12 +63,12 @@ public class CompositionDAO extends Repository<Composition> {
      * @return La composition trouvé.
      */
 	@Override
-	public Composition GetById(final Integer id) {
+	public Composition getById(final Integer id) {
         Log.d(TAG, "Entree");
 		final Cursor c = mBDD.query(BDD.TN_COMPOSITION, mColumn , String.valueOf(id), null, null, null, null);
 
         Log.d(TAG, "Sortie");
-		return ConvertCursorToObject(c);
+		return convertCursorToObject(c);
 	}
 
     /**
@@ -77,7 +77,7 @@ public class CompositionDAO extends Repository<Composition> {
      * @param composition à enregistrer.
      */
 	@Override
-	public void Save(final Composition composition) {
+	public void save(final Composition composition) {
 		Log.d(TAG, "Entree");
 
         final ContentValues contentValues = this.getContentValues(composition);
@@ -92,7 +92,7 @@ public class CompositionDAO extends Repository<Composition> {
      * @param composition à mettre à jour.
      */
 	@Override
-	public void Update(final Composition composition) {
+	public void update(final Composition composition) {
 		Log.d(TAG, "Entree");
 		final ContentValues contentValues = this.getContentValues(composition);
 		
@@ -123,7 +123,7 @@ public class CompositionDAO extends Repository<Composition> {
      * @param id Identifiant d'une composition.
      */
 	@Override
-	public void Delete(final Integer id) {
+	public void delete(final Integer id) {
 		Log.d(TAG, "Entree");
 		mBDD.delete(BDD.TN_COMPOSITION, mColumn[0] + "=?", new String[]{String.valueOf(id)});
 		Log.d(TAG, "Sortie");
@@ -136,7 +136,7 @@ public class CompositionDAO extends Repository<Composition> {
      * @return Une compositiion.
      */
 	@Override
-	public Composition ConvertCursorToObject(final Cursor cursor) {
+	public Composition convertCursorToObject(final Cursor cursor) {
 		
 		final Composition exec = new Composition();
 		

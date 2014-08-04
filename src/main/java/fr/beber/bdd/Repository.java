@@ -17,11 +17,11 @@ public abstract class Repository<T> implements IRepository<T>{
     /**
      * Utiliser pour ouvrir ou fermer une connexion BDD
      */
-	protected SQLiteDatabase mBDD;
+	protected static SQLiteDatabase mBDD;
     /**
      * Utiliser pour ouvrir ou fermer une connexion BDD
      */
-	protected SQLiteOpenHelper mSQLOH;
+	protected static SQLiteOpenHelper mSQLOH;
 
     /**
      * Constructeur
@@ -50,8 +50,7 @@ public abstract class Repository<T> implements IRepository<T>{
      * @param cursor à convertir.
      * @return Une liste de {@link T} trouvé.
      */
-    //TODO: vérifier que cela marche
-    public List<T> ConvertCursorToListObject(final Cursor cursor) {
+    public List<T> convertCursorToListObject(final Cursor cursor) {
         final List<T> liste = new ArrayList<T>();
 
         if (cursor.getCount() == 0)
@@ -59,7 +58,7 @@ public abstract class Repository<T> implements IRepository<T>{
 
         cursor.moveToFirst();
         do {
-            T exec = this.ConvertCursorToObject(cursor);
+            T exec = this.convertCursorToObject(cursor);
             liste.add(exec);
         } while (cursor.moveToNext());
 
@@ -74,11 +73,10 @@ public abstract class Repository<T> implements IRepository<T>{
      * @param cursor à convertir.
      * @return {@link T} trouvé.
      */
-    //TODO: vérifier que cela marche
-    public T ConvertCursorToOneObject(final Cursor cursor) {
+    public T convertCursorToOneObject(final Cursor cursor) {
         cursor.moveToFirst();
 
-        final T exec = ConvertCursorToObject(cursor);
+        final T exec = this.convertCursorToObject(cursor);
 
         cursor.close();
         return exec;

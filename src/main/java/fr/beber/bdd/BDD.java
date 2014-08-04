@@ -78,7 +78,7 @@ public class BDD  extends SQLiteOpenHelper {
      */
 	private static final String REQUETE_CREATION_UNIT = "CREATE TABLE "+TN_UNIT+" " +
 			"("+UNIT_COLUMN_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
-			+UNIT_COLUMN_ABREVIATION+" TEXT NOT NULL "
+			+UNIT_COLUMN_ABREVIATION+" TEXT NOT NULL, "
 			+UNIT_COLUMN_NAME+" TEXT); ";
 
     /*******************************

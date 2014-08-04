@@ -46,12 +46,12 @@ public class UnitDAO extends Repository<Unit>{
      * @return La liste des compositions trouvée.
      */
 	@Override
-	public List<Unit> GetAll() {
+	public List<Unit> getAll() {
         Log.d(TAG, "Entree");
 		final Cursor cursor = mBDD.query(BDD.TN_UNIT, mColumn , null, null, null, null, null);
 
         Log.d(TAG, "Sortie");
-		return ConvertCursorToListObject(cursor);
+		return convertCursorToListObject(cursor);
 	}
 
     /**
@@ -61,12 +61,12 @@ public class UnitDAO extends Repository<Unit>{
      * @return L'unité trouvé.
      */
 	@Override
-	public Unit GetById(final Integer id) {
+	public Unit getById(final Integer id) {
         Log.d(TAG, "Entree");
 		final Cursor cursor = mBDD.query(BDD.TN_UNIT, mColumn , String.valueOf(id), null, null, null, null);
 
         Log.d(TAG, "Sortie");
-		return ConvertCursorToObject(cursor);
+		return convertCursorToObject(cursor);
 	}
 
     /**
@@ -75,7 +75,7 @@ public class UnitDAO extends Repository<Unit>{
      * @param unit à enregistrer.
      */
 	@Override
-	public void Save(final Unit unit) {
+	public void save(final Unit unit) {
 		Log.d(TAG, "Entree");
 		ContentValues contentValues = new ContentValues();
 
@@ -91,7 +91,7 @@ public class UnitDAO extends Repository<Unit>{
      * @param unit à mettre à jour.
      */
 	@Override
-	public void Update(final Unit unit) {
+	public void update(final Unit unit) {
 		Log.d(TAG, "Entree");
 		final ContentValues contentValues = new ContentValues();
 
@@ -107,7 +107,7 @@ public class UnitDAO extends Repository<Unit>{
      * @param id Identifiant d'une unité.
      */
 	@Override
-	public void Delete(final Integer id) {
+	public void delete(final Integer id) {
 		Log.d(TAG, "Entree");
 		mBDD.delete(BDD.TN_UNIT, mColumn[0] + "=?", new String[]{String.valueOf(id)});
 		Log.d(TAG, "Sortie");
@@ -120,7 +120,7 @@ public class UnitDAO extends Repository<Unit>{
      * @return Une unité.
      */
 	@Override
-	public Unit ConvertCursorToObject(final Cursor cursor) {
+	public Unit convertCursorToObject(final Cursor cursor) {
 		
 		final Unit exec = new Unit();
 		exec.setId(cursor.getInt(BDD.UNIT_NUM_ID));

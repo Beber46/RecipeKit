@@ -17,7 +17,7 @@ public interface IRepository<T> {
      *
      * @return La liste de {@link T} trouvée.
      */
-	public List<T> GetAll();
+	public List<T> getAll();
 
     /**
      * Permet de récupérer un {@link T} en fonction de son identifiant <code>id</code>.
@@ -25,28 +25,28 @@ public interface IRepository<T> {
      * @param id Identifiant d'un {@link T}.
      * @return {@link T} trouvé.
      */
-    public T GetById(final Integer id);
+    public T getById(final Integer id);
 
     /**
      * Permet d'enregistrer un {@link T}.
      *
      * @param entite à enregistrer.
      */
-    public void Save(final T entite);
+    public void save(final T entite);
 
     /**
      * Permet de mettre à jour un {@link T}.
      *
      * @param entite à mettre à jour.
      */
-    public void Update(final T entite);
+    public void update(final T entite);
 
     /**
      * Permet de supprimer un {@link T} en fonction de son identifiant.
      *
      * @param id Identifiant d'un {@link T}.
      */
-    public void Delete(final Integer id);
+    public void delete(final Integer id);
 
     /**
      * Permet de convertire un {@link android.database.Cursor} en liste de {@link T}.
@@ -54,7 +54,7 @@ public interface IRepository<T> {
      * @param cursor à convertir.
      * @return Une liste de {@link T} trouvé.
      */
-    public List<T> ConvertCursorToListObject(Cursor cursor);
+    public List<T> convertCursorToListObject(Cursor cursor);
 
     /**
      * Permet de définir une {@link T} à partir du {@link android.database.Cursor}.
@@ -62,7 +62,7 @@ public interface IRepository<T> {
      * @param cursor à convertir.
      * @return Une compositiion.
      */
-    public T ConvertCursorToObject(Cursor cursor);
+    public T convertCursorToObject(Cursor cursor);
 
     /**
      * Permet de convertire un {@link android.database.Cursor} en {@link T}.
@@ -70,5 +70,5 @@ public interface IRepository<T> {
      * @param cursor à convertir.
      * @return {@link T} trouvé.
      */
-    public T ConvertCursorToOneObject(Cursor cursor);
+    public T convertCursorToOneObject(Cursor cursor);
 }

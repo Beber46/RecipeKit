@@ -45,12 +45,12 @@ public class ProduitDAO extends Repository<Produit> {
      * @return La liste des produits trouvée.
      */
 	@Override
-	public List<Produit> GetAll() {
+	public List<Produit> getAll() {
         Log.d(TAG, "Entree");
 		final Cursor c = mBDD.query(BDD.TN_PRODUIT, mColumn , null, null, null, null, null);
 
         Log.d(TAG, "Sortie");
-		return ConvertCursorToListObject(c);
+		return convertCursorToListObject(c);
 	}
 
     /**
@@ -60,12 +60,12 @@ public class ProduitDAO extends Repository<Produit> {
      * @return Le produit trouvé.
      */
 	@Override
-	public Produit GetById(final Integer id) {
+	public Produit getById(final Integer id) {
         Log.d(TAG, "Entree");
 		final Cursor c = mBDD.query(BDD.TN_PRODUIT, mColumn , String.valueOf(id), null, null, null, null);
 
         Log.d(TAG, "Sortie");
-		return ConvertCursorToObject(c);
+		return convertCursorToObject(c);
 	}
 
     /**
@@ -74,12 +74,12 @@ public class ProduitDAO extends Repository<Produit> {
      * @param produit à enregistrer.
      */
 	@Override
-	public void Save(final Produit produit) {
+	public void save(final Produit produit) {
 		Log.d(TAG, "Entree");
 		final ContentValues contentValues = new ContentValues();
 
 		contentValues.put(mColumn[1], produit.getName());
-		
+
 		mBDD.insert(BDD.TN_PRODUIT, null, contentValues);
 		Log.d(TAG, "Sortie");
 	}
@@ -90,12 +90,12 @@ public class ProduitDAO extends Repository<Produit> {
      * @param produit à mettre à jour.
      */
 	@Override
-	public void Update(final Produit produit) {
+	public void update(final Produit produit) {
 		Log.d(TAG, "Entree");
 		final ContentValues contentValues = new ContentValues();
 
 		contentValues.put(mColumn[1], produit.getName());
-		
+
 		mBDD.update(BDD.TN_PRODUIT, contentValues, mColumn[0] + "=?", new String[]{String.valueOf(produit.getId())});
 		Log.d(TAG, "Sortie");
 	}
@@ -106,7 +106,7 @@ public class ProduitDAO extends Repository<Produit> {
      * @param id Identifiant d'un produit.
      */
 	@Override
-	public void Delete(final Integer id) {
+	public void delete(final Integer id) {
 		Log.d(TAG, "Entree");
 		mBDD.delete(BDD.TN_PRODUIT, mColumn[0] + "=?", new String[]{String.valueOf(id)});
 		Log.d(TAG, "Sortie");
@@ -119,7 +119,7 @@ public class ProduitDAO extends Repository<Produit> {
      * @return Un produit.
      */
 	@Override
-	public Produit ConvertCursorToObject(Cursor cursor) {
+	public Produit convertCursorToObject(Cursor cursor) {
 		
 		final Produit exec = new Produit();
 		
