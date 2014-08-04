@@ -1,48 +1,41 @@
-package fr.beber.object;
+package fr.beber.bean;
 
-/**
- * Classe permettant de créer un produit pour les recettes.
- *
- * @author Beber46
- * @version 1.0
- */
-public class Produit {
-
+public class Unit {
     /**
-     * Identifiant du produit
+     * Identifiant d'une unité.
      */
 	private Integer id;
 
     /**
-     * Nom du produit
+     * Nom d'une unité.
      */
 	private String name;
 
     /**
-     * Permet d'obtenir l'identifiant du produit.
-     * @return Un identifiant de produit.
+     * Permet d'obtenir l'identifiant d'une unité.
+     * @return Un identifiant d'une unité.
      */
     public Integer getId() {
         return id;
     }
 
     /**
-     * Permet de changer l'identifiant du produit.
+     * Permet de changer l'identifiant d'une unité.
      */
     public void setId(Integer id) {
         this.id = id;
     }
 
     /**
-     * Permet d'obtenir le nom du produit.
-     * @return Le nom du produit.
+     * Permet d'obtenir le nom d'une unité.
+     * @return Le nom d'une unité.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Permet de changer le nom du produit.
+     * Permet de changer le nom d'une unité.
      */
     public void setName(String name) {
         this.name = name;
@@ -53,10 +46,10 @@ public class Produit {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Produit produit = (Produit) o;
+        Unit unit = (Unit) o;
 
-        if (id != null ? !id.equals(produit.id) : produit.id != null) return false;
-        if (name != null ? !name.equals(produit.name) : produit.name != null) return false;
+        if (id != null ? !id.equals(unit.id) : unit.id != null) return false;
+        if (name != null ? !name.equals(unit.name) : unit.name != null) return false;
 
         return true;
     }
@@ -70,7 +63,7 @@ public class Produit {
 
     @Override
     public String toString() {
-        return "Produit[" +
+        return "Unit[" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ']';

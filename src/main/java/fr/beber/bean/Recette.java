@@ -1,4 +1,4 @@
-package fr.beber.object;
+package fr.beber.bean;
 
 /**
  * Classe de recette qui permet d'identifier une recette.

@@ -1,4 +1,4 @@
-package fr.beber.object;
+package fr.beber.bean;
 
 /**
  * Classe de composition qui permet d'associé une recette avec la quantité d'un produit.
