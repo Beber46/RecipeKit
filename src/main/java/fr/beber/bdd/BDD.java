@@ -119,6 +119,14 @@ public class BDD  extends SQLiteOpenHelper {
 		super(context, BASE_NAME, factory, DATABASE_VERSION);
 	}
 
+    /**
+     * Constructeur provenant de l'heritage
+     * @param context Définit le contexte à utiliser.
+     */
+    public BDD(final Context context) {
+        super(context, BASE_NAME, null, DATABASE_VERSION);
+    }
+
 	@Override
 	public void onCreate(final SQLiteDatabase sqLiteDatabase) {
 
