@@ -34,7 +34,7 @@ public class ProduitRepo extends Repository<Produit> {
 
     /**
      * Constructeur
-     * @param context
+     * @param context Définit le contexte à utiliser.
      */
 	public ProduitRepo(final Context context){
 		mSQLOH = new BDD(context, null);
@@ -114,7 +114,7 @@ public class ProduitRepo extends Repository<Produit> {
 	}
 
     /**
-     * Méthode utilisée par {@link #ConvertCursorToObject(android.database.Cursor)} et {@link #ConvertCursorToListObject(android.database.Cursor)}.
+     * Permet de définir une {@link fr.beber.object.Produit} à partir du {@link android.database.Cursor}.
      *
      * @param cursor à convertir.
      * @return Un produit.
@@ -122,7 +122,7 @@ public class ProduitRepo extends Repository<Produit> {
 	@Override
 	public Produit ConvertCursorToObject(Cursor cursor) {
 		
-		Produit exec = new Produit();
+		final Produit exec = new Produit();
 		
 		exec.setId(cursor.getInt(BDD.PRODUIT_NUM_ID));
 		exec.setName(cursor.getString(BDD.PRODUIT_NUM_NAME));

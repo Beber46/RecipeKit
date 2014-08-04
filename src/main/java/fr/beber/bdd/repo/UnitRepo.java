@@ -8,7 +8,6 @@ import fr.beber.bdd.BDD;
 import fr.beber.bdd.Repository;
 import fr.beber.object.Unit;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,7 +33,7 @@ public class UnitRepo extends Repository<Unit>{
 
     /**
      * Constructeur
-     * @param context
+     * @param context Définit le contexte à utiliser.
      */
 	public UnitRepo(final Context context){
 		mSQLOH = new BDD(context, null);
@@ -114,7 +113,7 @@ public class UnitRepo extends Repository<Unit>{
 	}
 
     /**
-     * Méthode utilisée par {@link #ConvertCursorToObject(android.database.Cursor)} et {@link #ConvertCursorToListObject(android.database.Cursor)}.
+     * Permet de définir une {@link fr.beber.object.Unit} à partir du {@link android.database.Cursor}.
      *
      * @param cursor à convertir.
      * @return Une unité.

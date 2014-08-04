@@ -36,7 +36,7 @@ public class CompositionRepo  extends Repository<Composition> {
 
     /**
      * Constructeur
-     * @param context
+     * @param context Définit le contexte à utiliser.
      */
 	public CompositionRepo(final Context context){
 		mSQLOH = new BDD(context, null);
@@ -130,7 +130,7 @@ public class CompositionRepo  extends Repository<Composition> {
 	}
 
     /**
-     * Méthode utilisée par {@link #ConvertCursorToObject(android.database.Cursor)} et {@link #ConvertCursorToListObject(android.database.Cursor)}.
+     * Permet de définir une {@link fr.beber.object.Composition} à partir du {@link android.database.Cursor}.
      *
      * @param cursor à convertir.
      * @return Une compositiion.

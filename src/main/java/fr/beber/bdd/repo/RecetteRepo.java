@@ -34,7 +34,7 @@ public class RecetteRepo extends Repository<Recette> {
 
     /**
      * Constructeur
-     * @param context
+     * @param context Définit le contexte à utiliser.
      */
 	public RecetteRepo(final Context context){
 		mSQLOH = new BDD(context, null);
@@ -114,7 +114,7 @@ public class RecetteRepo extends Repository<Recette> {
 	}
 
     /**
-     * Méthode utilisée par {@link #ConvertCursorToObject(android.database.Cursor)} et {@link #ConvertCursorToListObject(android.database.Cursor)}.
+     * Permet de définir une {@link fr.beber.object.Recette} à partir du {@link android.database.Cursor}.
      *
      * @param cursor à convertir.
      * @return Une compositiion.
