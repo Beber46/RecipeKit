@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.util.Log;
 import fr.beber.bdd.BDD;
 import fr.beber.bdd.Repository;
-import fr.beber.object.Produit;
+import fr.beber.bean.Produit;
 
 import java.util.List;
 
@@ -113,7 +113,7 @@ public class ProduitDAO extends Repository<Produit> {
 	}
 
     /**
-     * Permet de définir une {@link fr.beber.object.Produit} à partir du {@link android.database.Cursor}.
+     * Permet de définir une {@link fr.beber.bean.Produit} à partir du {@link android.database.Cursor}.
      *
      * @param cursor à convertir.
      * @return Un produit.

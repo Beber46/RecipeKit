@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.util.Log;
 import fr.beber.bdd.BDD;
 import fr.beber.bdd.Repository;
-import fr.beber.object.Recette;
+import fr.beber.bean.Recette;
 
 import java.util.List;
 
@@ -116,7 +116,7 @@ public class RecetteDAO extends Repository<Recette> {
 	}
 
     /**
-     * Permet de définir une {@link fr.beber.object.Recette} à partir du {@link android.database.Cursor}.
+     * Permet de définir une {@link fr.beber.bean.Recette} à partir du {@link android.database.Cursor}.
      *
      * @param cursor à convertir.
      * @return Une compositiion.

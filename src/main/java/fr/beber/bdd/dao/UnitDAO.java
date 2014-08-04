@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.util.Log;
 import fr.beber.bdd.BDD;
 import fr.beber.bdd.Repository;
-import fr.beber.object.Unit;
+import fr.beber.bean.Unit;
 
 import java.util.List;
 
@@ -113,7 +113,7 @@ public class UnitDAO extends Repository<Unit>{
 	}
 
     /**
-     * Permet de définir une {@link fr.beber.object.Unit} à partir du {@link android.database.Cursor}.
+     * Permet de définir une {@link fr.beber.bean.Unit} à partir du {@link android.database.Cursor}.
      *
      * @param cursor à convertir.
      * @return Une unité.

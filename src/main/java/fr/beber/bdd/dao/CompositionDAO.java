@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.util.Log;
 import fr.beber.bdd.BDD;
 import fr.beber.bdd.Repository;
-import fr.beber.object.Composition;
+import fr.beber.bean.Composition;
 
 import java.util.List;
 
@@ -130,7 +130,7 @@ public class CompositionDAO extends Repository<Composition> {
 	}
 
     /**
-     * Permet de définir une {@link fr.beber.object.Composition} à partir du {@link android.database.Cursor}.
+     * Permet de définir une {@link fr.beber.bean.Composition} à partir du {@link android.database.Cursor}.
      *
      * @param cursor à convertir.
      * @return Une compositiion.
