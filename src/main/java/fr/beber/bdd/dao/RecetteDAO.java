@@ -1,4 +1,4 @@
-package fr.beber.bdd.repo;
+package fr.beber.bdd.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -16,7 +16,7 @@ import java.util.List;
  * @author Beber46
  * @version 1.0
  */
-public class RecetteRepo extends Repository<Recette> {
+public class RecetteDAO extends Repository<Recette> {
 
     /**
      * Tag à utiliser pour le LOG
@@ -38,7 +38,7 @@ public class RecetteRepo extends Repository<Recette> {
      * Constructeur
      * @param context Définit le contexte à utiliser.
      */
-	public RecetteRepo(final Context context){
+	public RecetteDAO(final Context context){
 		mSQLOH = new BDD(context, null);
 	}
 

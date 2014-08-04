@@ -1,4 +1,4 @@
-package fr.beber.bdd.repo;
+package fr.beber.bdd.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -16,7 +16,7 @@ import java.util.List;
  * @author Beber46
  * @version 1.0
  */
-public class CompositionRepo  extends Repository<Composition> {
+public class CompositionDAO extends Repository<Composition> {
 
     /**
      * Tag à utiliser pour le LOG
@@ -38,7 +38,7 @@ public class CompositionRepo  extends Repository<Composition> {
      * Constructeur
      * @param context Définit le contexte à utiliser.
      */
-	public CompositionRepo(final Context context){
+	public CompositionDAO(final Context context){
 		mSQLOH = new BDD(context, null);
 	}
 

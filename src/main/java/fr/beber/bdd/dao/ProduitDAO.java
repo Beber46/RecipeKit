@@ -1,4 +1,4 @@
-package fr.beber.bdd.repo;
+package fr.beber.bdd.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,7 +8,6 @@ import fr.beber.bdd.BDD;
 import fr.beber.bdd.Repository;
 import fr.beber.object.Produit;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +16,7 @@ import java.util.List;
  * @author Beber46
  * @version 1.0
  */
-public class ProduitRepo extends Repository<Produit> {
+public class ProduitDAO extends Repository<Produit> {
 
     /**
      * Tag à utiliser pour le LOG
@@ -36,7 +35,7 @@ public class ProduitRepo extends Repository<Produit> {
      * Constructeur
      * @param context Définit le contexte à utiliser.
      */
-	public ProduitRepo(final Context context){
+	public ProduitDAO(final Context context){
 		mSQLOH = new BDD(context, null);
 	}
 
