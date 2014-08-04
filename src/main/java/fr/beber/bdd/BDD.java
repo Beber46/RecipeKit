@@ -44,13 +44,23 @@ public class BDD  extends SQLiteOpenHelper {
 	public static final int RECETTE_NUM_ID = 0;
 	public static final String RECETTE_COLUMN_NAME = "NAME";
 	public static final int RECETTE_NUM_NAME = 1;
+    public static final String RECETTE_COLUMN_PREPARATION = "PREPARATION";
+    public static final int RECETTE_NUM_PREPARATION = 2;
+    public static final String RECETTE_COLUMN_TEMPS_PREPARATION = "TEMPS_PREPARATION";
+    public static final int RECETTE_NUM_TEMPS_PREPARATION = 3;
+    public static final String RECETTE_COLUMN_TEMPS_CUISSON = "TEMPS_CUISSON";
+    public static final int RECETTE_NUM_TEMPS_CUISSON = 4;
 
     /**
      * Permet de construire la requête pour créer la table recette
      */
 	private static final String REQUETE_CREATION_RECETTE = "CREATE TABLE "+TN_RECETTE+" " +
 			"("+RECETTE_COLUMN_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
-			+RECETTE_COLUMN_NAME+" TEXT); ";
+			+RECETTE_COLUMN_NAME+" TEXT NOT NULL, "
+			+RECETTE_COLUMN_PREPARATION+" TEXT NOT NULL, "
+			+RECETTE_COLUMN_TEMPS_PREPARATION+" INTEGER NOT NULL, "
+			+RECETTE_COLUMN_TEMPS_CUISSON+" INTEGER NOT NULL "
+            +"); ";
 
 	/*******************************
 	 * Création de la table Recette

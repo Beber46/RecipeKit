@@ -27,8 +27,8 @@ public class UnitRepo extends Repository<Unit>{
      * Champs en base de données de {@link Unit}
      */
 	private String[] mColumn = new String[]{
-			BDD.PRODUIT_COLUMN_ID,
-			BDD.PRODUIT_COLUMN_NAME
+			BDD.UNIT_COLUMN_ID,
+			BDD.UNIT_COLUMN_NAME
 	};
 
     /**

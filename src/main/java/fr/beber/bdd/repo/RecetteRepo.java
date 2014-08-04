@@ -8,7 +8,6 @@ import fr.beber.bdd.BDD;
 import fr.beber.bdd.Repository;
 import fr.beber.object.Recette;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,8 +27,11 @@ public class RecetteRepo extends Repository<Recette> {
      * Champs en base de données de {@link Recette}
      */
 	private String[] mColumn = new String[]{
-			BDD.PRODUIT_COLUMN_ID,
-			BDD.PRODUIT_COLUMN_NAME
+			BDD.RECETTE_COLUMN_ID,
+			BDD.RECETTE_COLUMN_NAME,
+			BDD.RECETTE_COLUMN_PREPARATION,
+			BDD.RECETTE_COLUMN_TEMPS_PREPARATION,
+			BDD.RECETTE_COLUMN_TEMPS_CUISSON
 	};
 
     /**
@@ -126,7 +128,10 @@ public class RecetteRepo extends Repository<Recette> {
 		
 		exec.setId(cursor.getInt(BDD.RECETTE_NUM_ID));
 		exec.setName(cursor.getString(BDD.RECETTE_NUM_NAME));
-		
+		exec.setPreparation(cursor.getString(BDD.RECETTE_NUM_PREPARATION));
+		exec.setTempsPreparation(cursor.getInt(BDD.RECETTE_NUM_TEMPS_PREPARATION));
+		exec.setTempsCuisson(cursor.getInt(BDD.RECETTE_NUM_TEMPS_CUISSON));
+
 		return exec;
 	}
 	
