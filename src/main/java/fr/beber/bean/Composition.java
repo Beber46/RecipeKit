@@ -25,7 +25,7 @@ public class Composition {
     /**
      * Quantite de produit dans la recette.
      */
-	private Integer quantite;
+	private Float quantite;
 
     /**
      * Idnetifiant de l'unité de la quantite.
@@ -81,14 +81,14 @@ public class Composition {
      * Permet d'obtenir la quantité de produit de la composition.
      * @return Quantité de produit.
      */
-    public Integer getQuantite() {
+    public Float getQuantite() {
         return quantite;
     }
 
     /**
      * Permet de changer la quantité de produit de la composition.
      */
-    public void setQuantite(Integer quantite) {
+    public void setQuantite(Float quantite) {
         this.quantite = quantite;
     }
 

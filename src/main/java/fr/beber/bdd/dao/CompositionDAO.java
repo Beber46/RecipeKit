@@ -111,8 +111,10 @@ public class CompositionDAO extends Repository<Composition> {
 
         contentValues.put(mColumn[1], composition.getIdProduit());
         contentValues.put(mColumn[2], composition.getIdRecette());
-        contentValues.put(mColumn[3], composition.getQuantite());
-        contentValues.put(mColumn[4], composition.getIdUnit());
+        if(composition.getQuantite()!=null)
+            contentValues.put(mColumn[3], composition.getQuantite());
+        if(composition.getIdUnit()!=null)
+            contentValues.put(mColumn[4], composition.getIdUnit());
 
         return contentValues;
     }
@@ -143,7 +145,7 @@ public class CompositionDAO extends Repository<Composition> {
 		exec.setId(cursor.getInt(BDD.COMPOSITION_NUM_ID));
 		exec.setIdProduit(cursor.getInt(BDD.COMPOSITION_NUM_ID_PRODUIT));
 		exec.setIdRecette(cursor.getInt(BDD.COMPOSITION_NUM_ID_RECETTE));
-		exec.setQuantite(cursor.getInt(BDD.COMPOSITION_NUM_QUANTITE));
+		exec.setQuantite(cursor.getFloat(BDD.COMPOSITION_NUM_QUANTITE));
 		exec.setIdUnit(cursor.getInt(BDD.COMPOSITION_NUM_ID_UNIT));
 
 		return exec;

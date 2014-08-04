@@ -80,7 +80,9 @@ public class UnitDAO extends Repository<Unit>{
 		ContentValues contentValues = new ContentValues();
 
 		contentValues.put(mColumn[1], unit.getName());
-		
+        if(unit.getAbreviation()!=null)
+		    contentValues.put(mColumn[2], unit.getAbreviation());
+
 		mBDD.insert(BDD.TN_UNIT, null, contentValues);
 		Log.d(TAG, "Sortie");
 	}

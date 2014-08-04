@@ -82,7 +82,11 @@ public class RecetteDAO extends Repository<Recette> {
 		final ContentValues contentValues = new ContentValues();
 
 		contentValues.put(mColumn[1], recette.getName());
-		
+		contentValues.put(mColumn[2], recette.getPreparation());
+		contentValues.put(mColumn[3], recette.getTempsPreparation());
+        if(recette.getTempsCuisson()!=null)
+		    contentValues.put(mColumn[4], recette.getTempsCuisson());
+
 		mBDD.insert(BDD.TN_RECETTE, null, contentValues);
 		Log.d(TAG, "Sortie");
 	}
