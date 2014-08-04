@@ -70,12 +70,15 @@ public class BDD  extends SQLiteOpenHelper {
 	public static final int UNIT_NUM_ID = 0;
 	public static final String UNIT_COLUMN_NAME = "NAME";
 	public static final int UNIT_NUM_NAME = 1;
+	public static final String UNIT_COLUMN_ABREVIATION = "ABREVIATION";
+	public static final int UNIT_NUM_ABREVIATION = 2;
 
     /**
      * Permet de construire la requête pour créer la table unité
      */
 	private static final String REQUETE_CREATION_UNIT = "CREATE TABLE "+TN_UNIT+" " +
 			"("+UNIT_COLUMN_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
+			+UNIT_COLUMN_ABREVIATION+" TEXT NOT NULL "
 			+UNIT_COLUMN_NAME+" TEXT); ";
 
     /*******************************

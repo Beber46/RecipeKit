@@ -28,7 +28,8 @@ public class UnitDAO extends Repository<Unit>{
      */
 	private String[] mColumn = new String[]{
 			BDD.UNIT_COLUMN_ID,
-			BDD.UNIT_COLUMN_NAME
+			BDD.UNIT_COLUMN_NAME,
+			BDD.UNIT_COLUMN_ABREVIATION
 	};
 
     /**
@@ -124,7 +125,8 @@ public class UnitDAO extends Repository<Unit>{
 		final Unit exec = new Unit();
 		exec.setId(cursor.getInt(BDD.UNIT_NUM_ID));
 		exec.setName(cursor.getString(BDD.UNIT_NUM_NAME));
-		
+		exec.setAbreviation(cursor.getString(BDD.UNIT_NUM_ABREVIATION));
+
 		return exec;
 	}
 
