@@ -19,9 +19,14 @@ import java.util.List;
 public class CompositionDAO extends Repository<Composition> {
 
     /**
-     * Tag à utiliser pour le LOG
+     * Tag à utiliser pour le LOG.
      */
 	private static final String TAG = "CompositionRepo";
+
+    /**
+     * Conserve le contexte sur un même objet.
+     */
+    private Context mContext = null;
 
     /**
      * Champs en base de données de {@link Composition}
@@ -40,6 +45,7 @@ public class CompositionDAO extends Repository<Composition> {
      */
 	public CompositionDAO(final Context context){
 		mSQLOH = new BDD(context, null);
+        this.mContext = context;
 	}
 
     /**
@@ -109,7 +115,8 @@ public class CompositionDAO extends Repository<Composition> {
     private ContentValues getContentValues(final Composition composition){
         final ContentValues contentValues = new ContentValues();
 
-        contentValues.put(mColumn[1], composition.getIdProduit());
+        //TODO: vérifier que cela marche avec un save
+        contentValues.put(mColumn[1], composition.getProduit().getId());
         contentValues.put(mColumn[2], composition.getIdRecette());
         if(composition.getQuantite()!=null)
             contentValues.put(mColumn[3], composition.getQuantite());
@@ -141,9 +148,11 @@ public class CompositionDAO extends Repository<Composition> {
 	public Composition convertCursorToObject(final Cursor cursor) {
 		
 		final Composition exec = new Composition();
-		
+
+        final ProduitDAO produitDAO = new ProduitDAO(mContext);
+        //TODO: vérifier que cela marche avec un retour d'un getAll par exemple
 		exec.setId(cursor.getInt(BDD.COMPOSITION_NUM_ID));
-		exec.setIdProduit(cursor.getInt(BDD.COMPOSITION_NUM_ID_PRODUIT));
+		exec.setProduit(produitDAO.getById(cursor.getInt(BDD.COMPOSITION_NUM_ID_PRODUIT)));
 		exec.setIdRecette(cursor.getInt(BDD.COMPOSITION_NUM_ID_RECETTE));
 		exec.setQuantite(cursor.getFloat(BDD.COMPOSITION_NUM_QUANTITE));
 		exec.setIdUnit(cursor.getInt(BDD.COMPOSITION_NUM_ID_UNIT));

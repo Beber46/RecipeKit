@@ -198,7 +198,7 @@ public class InitBD {
         final CompositionDAO compositionDAO = new CompositionDAO(context);
 
         composition.setIdRecette(recette.getId());
-        composition.setIdProduit(produitList.get(0).getId());//farine
+        composition.setProduit(produitList.get(0));//farine
         composition.setIdUnit(unitList.get(0).getId());//g
         composition.setQuantite(new Float(250));
         compositionDAO.Open();
@@ -207,7 +207,7 @@ public class InitBD {
 
         composition = new Composition();
         composition.setIdRecette(recette.getId());
-        composition.setIdProduit(produitList.get(1).getId());//sucre
+        composition.setProduit(produitList.get(1));//sucre
         composition.setIdUnit(unitList.get(0).getId());//g
         composition.setQuantite(new Float(150));
         compositionDAO.Open();
@@ -216,7 +216,7 @@ public class InitBD {
 
         composition = new Composition();
         composition.setIdRecette(recette.getId());
-        composition.setIdProduit(produitList.get(2).getId());//sucre vanillé
+        composition.setProduit(produitList.get(2));//sucre vanillé
         composition.setIdUnit(unitList.get(1).getId());//sachet
         composition.setQuantite(new Float(0.5));
         compositionDAO.Open();
@@ -225,7 +225,7 @@ public class InitBD {
 
         composition = new Composition();
         composition.setIdRecette(recette.getId());
-        composition.setIdProduit(produitList.get(3).getId());//sel
+        composition.setProduit(produitList.get(3));//sel
         composition.setIdUnit(unitList.get(2).getId());//pincé
         composition.setQuantite(new Float(1));
         compositionDAO.Open();
@@ -234,7 +234,7 @@ public class InitBD {
 
         composition = new Composition();
         composition.setIdRecette(recette.getId());
-        composition.setIdProduit(produitList.get(4).getId());//levure
+        composition.setProduit(produitList.get(4));//levure
         composition.setIdUnit(unitList.get(1).getId());//sachet
         composition.setQuantite(new Float(1));
         compositionDAO.Open();
@@ -243,7 +243,7 @@ public class InitBD {
 
         composition = new Composition();
         composition.setIdRecette(recette.getId());
-        composition.setIdProduit(produitList.get(5).getId());//oeuf
+        composition.setProduit(produitList.get(5));//oeuf
         composition.setQuantite(new Float(1));
         compositionDAO.Open();
         compositionDAO.save(composition);
@@ -251,7 +251,7 @@ public class InitBD {
 
         composition = new Composition();
         composition.setIdRecette(recette.getId());
-        composition.setIdProduit(produitList.get(6).getId());//beurre
+        composition.setProduit(produitList.get(6));//beurre
         composition.setIdUnit(unitList.get(0).getId());//g
         composition.setQuantite(new Float(125));
         compositionDAO.Open();
@@ -260,7 +260,7 @@ public class InitBD {
 
         composition = new Composition();
         composition.setIdRecette(recette.getId());
-        composition.setIdProduit(produitList.get(7).getId());//beurre
+        composition.setProduit(produitList.get(7));//beurre
         composition.setIdUnit(unitList.get(3).getId());//cuillère à café
         composition.setQuantite(new Float(2));
         compositionDAO.Open();
@@ -269,7 +269,7 @@ public class InitBD {
 
         composition = new Composition();
         composition.setIdRecette(recette.getId());
-        composition.setIdProduit(produitList.get(8).getId());//pepite chocolat
+        composition.setProduit(produitList.get(8));//pepite chocolat
         compositionDAO.Open();
         compositionDAO.save(composition);
         compositionDAO.Close();

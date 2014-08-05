@@ -13,9 +13,9 @@ public class Composition {
 	private Integer id;
 
     /**
-     * Identifiant d'un produit.
+     * Produit présent dans la composition
      */
-	private Integer idProduit;
+	private Produit produit;
 
     /**
      * Identifiant de la recette.
@@ -48,18 +48,18 @@ public class Composition {
     }
 
     /**
-     * Permet d'obtenir l'identifiant du produit.
-     * @return Un identifiant de produit.
+     * Permet d'obtenir le produit de la composition.
+     * @return Le produit de la composition.
      */
-    public Integer getIdProduit() {
-        return idProduit;
+    public Produit getProduit() {
+        return produit;
     }
 
     /**
-     * Permet de changer l'identifiant du produit.
+     * Permet de changer le produit de la composition.
      */
-    public void setIdProduit(Integer idProduit) {
-        this.idProduit = idProduit;
+    public void setProduit(Produit produit) {
+        this.produit = produit;
     }
 
     /**
@@ -115,9 +115,9 @@ public class Composition {
         Composition that = (Composition) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (idProduit != null ? !idProduit.equals(that.idProduit) : that.idProduit != null) return false;
         if (idRecette != null ? !idRecette.equals(that.idRecette) : that.idRecette != null) return false;
         if (idUnit != null ? !idUnit.equals(that.idUnit) : that.idUnit != null) return false;
+        if (produit != null ? !produit.equals(that.produit) : that.produit != null) return false;
         if (quantite != null ? !quantite.equals(that.quantite) : that.quantite != null) return false;
 
         return true;
@@ -126,7 +126,7 @@ public class Composition {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (idProduit != null ? idProduit.hashCode() : 0);
+        result = 31 * result + (produit != null ? produit.hashCode() : 0);
         result = 31 * result + (idRecette != null ? idRecette.hashCode() : 0);
         result = 31 * result + (quantite != null ? quantite.hashCode() : 0);
         result = 31 * result + (idUnit != null ? idUnit.hashCode() : 0);
@@ -137,7 +137,7 @@ public class Composition {
     public String toString() {
         return "Composition[" +
                 "id=" + id +
-                ", idProduit=" + idProduit +
+                ", produit=" + produit +
                 ", idRecette=" + idRecette +
                 ", quantite=" + quantite +
                 ", idUnit=" + idUnit +
