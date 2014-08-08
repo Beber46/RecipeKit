@@ -128,15 +128,18 @@ public class RecetteDAO extends Repository<Recette> {
 	@Override
 	public Recette convertCursorToObject(final Cursor cursor) {
 		
-		final Recette exec = new Recette();
-		
-		exec.setId(cursor.getInt(BDD.RECETTE_NUM_ID));
-		exec.setName(cursor.getString(BDD.RECETTE_NUM_NAME));
-		exec.setPreparation(cursor.getString(BDD.RECETTE_NUM_PREPARATION));
-		exec.setTempsPreparation(cursor.getInt(BDD.RECETTE_NUM_TEMPS_PREPARATION));
-		exec.setTempsCuisson(cursor.getInt(BDD.RECETTE_NUM_TEMPS_CUISSON));
+		final Recette recette = new Recette();
 
-		return exec;
+        recette.setId(cursor.getInt(BDD.RECETTE_NUM_ID));
+        recette.setName(cursor.getString(BDD.RECETTE_NUM_NAME));
+        recette.setPreparation(cursor.getString(BDD.RECETTE_NUM_PREPARATION));
+        recette.setTempsPreparation(cursor.getInt(BDD.RECETTE_NUM_TEMPS_PREPARATION));
+        recette.setTempsCuisson(cursor.getInt(BDD.RECETTE_NUM_TEMPS_CUISSON));
+
+        final CompositionDAO compositionDAO = new CompositionDAO(mSQLOH);
+        recette.setCompositionList(compositionDAO.getByIdRecette(recette.getId()));
+
+		return recette;
 	}
 	
 }
