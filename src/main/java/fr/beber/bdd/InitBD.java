@@ -25,9 +25,19 @@ public class InitBD {
 
     private static final String TAG = "InitBD";
 
-    public InitBD(final Context context) {
+    /**
+     * Permet de créer la recette de mike.
+     * @param context
+     */
+    public void createRecetteMike(final Context context){
         final List<Composition> compositionList = this.creationComposition(context);
-        Log.d(TAG," Nombre de Composition créé: "+compositionList.size());
+        final RecetteDAO recetteDAO = new RecetteDAO(context);
+        recetteDAO.Open();
+        final Recette recette = recetteDAO.getAll().get(0);
+        recetteDAO.Close();
+        Log.d(TAG," Nombre de Composition créé: "+recette.getCompositionList().size());
+        Log.d(TAG," Recette: "+recette.toString());
+
     }
 
     /**
