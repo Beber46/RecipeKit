@@ -37,6 +37,16 @@ public class Recette {
     private Integer tempsCuisson;
 
     /**
+     * Permet d'avoir une note pour la recette attribué par l'utilisateur.
+     */
+    private Integer note;
+
+    /**
+     * Nombre de personne pour la recette.
+     */
+    private Integer nbPersonne;
+
+    /**
      * Liste permettant de connaitre la composition d'une recette
      */
     private List<Composition> compositionList;
@@ -121,6 +131,38 @@ public class Recette {
     }
 
     /**
+     * Permet d'obtenir la note de la recette.
+     * @return Un entier compris entre 1-5.
+     */
+    public Integer getNote() {
+        return note;
+    }
+
+    /**
+     * Change la note de la recette.
+     * @param note de la recette à changer.
+     */
+    public void setNote(final Integer note) {
+        this.note = note;
+    }
+
+    /**
+     * Permet d'obtenir le nombre de personne de la recette.
+     * @return Le nombre de personne.
+     */
+    public Integer getNbPersonne() {
+        return nbPersonne;
+    }
+
+    /**
+     *  Change le nombre de personne de la recette.
+     * @param nbPersonne de la recette à changer.
+     */
+    public void setNbPersonne(Integer nbPersonne) {
+        this.nbPersonne = nbPersonne;
+    }
+
+    /**
      * Permet d'obtenir la liste des compositions.
      * @return Liste des compositions.
      */
@@ -131,7 +173,7 @@ public class Recette {
     /**
      * Permet de changer la liste des compositions.
      */
-    public void setCompositionList(List<Composition> compositionList) {
+    public void setCompositionList(final List<Composition> compositionList) {
         this.compositionList = compositionList;
     }
 
@@ -154,6 +196,8 @@ public class Recette {
             return false;
         if (id != null ? !id.equals(recette.id) : recette.id != null) return false;
         if (name != null ? !name.equals(recette.name) : recette.name != null) return false;
+        if (note != null ? !note.equals(recette.note) : recette.note != null) return false;
+        if (nbPersonne != null ? !nbPersonne.equals(recette.nbPersonne) : recette.nbPersonne != null) return false;
         if (preparation != null ? !preparation.equals(recette.preparation) : recette.preparation != null) return false;
         if (tempsCuisson != null ? !tempsCuisson.equals(recette.tempsCuisson) : recette.tempsCuisson != null)
             return false;
@@ -170,6 +214,8 @@ public class Recette {
         result = 31 * result + (preparation != null ? preparation.hashCode() : 0);
         result = 31 * result + (tempsPreparation != null ? tempsPreparation.hashCode() : 0);
         result = 31 * result + (tempsCuisson != null ? tempsCuisson.hashCode() : 0);
+        result = 31 * result + (note != null ? note.hashCode() : 0);
+        result = 31 * result + (nbPersonne != null ? nbPersonne.hashCode() : 0);
         result = 31 * result + (compositionList != null ? compositionList.hashCode() : 0);
         return result;
     }
@@ -182,6 +228,8 @@ public class Recette {
                 ", preparation='" + preparation + '\'' +
                 ", tempsPreparation=" + tempsPreparation +
                 ", tempsCuisson=" + tempsCuisson +
+                ", note=" + note +
+                ", nbPersonne=" + nbPersonne +
                 ", compositionList=" + compositionList +
                 ']';
     }

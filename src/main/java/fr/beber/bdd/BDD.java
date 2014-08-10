@@ -50,6 +50,10 @@ public class BDD  extends SQLiteOpenHelper {
     public static final int RECETTE_NUM_TEMPS_PREPARATION = 3;
     public static final String RECETTE_COLUMN_TEMPS_CUISSON = "TEMPS_CUISSON";
     public static final int RECETTE_NUM_TEMPS_CUISSON = 4;
+    public static final String RECETTE_COLUMN_NOTE = "NOTE";
+    public static final int RECETTE_NUM_NOTE = 5;
+    public static final String RECETTE_COLUMN_NB_PERSONNE = "NB_PERSONNE";
+    public static final int RECETTE_NUM_NB_PERSONNE = 6;
 
     /**
      * Permet de construire la requête pour créer la table recette
@@ -59,7 +63,9 @@ public class BDD  extends SQLiteOpenHelper {
 			+RECETTE_COLUMN_NAME+" TEXT NOT NULL, "
 			+RECETTE_COLUMN_PREPARATION+" TEXT NOT NULL, "
 			+RECETTE_COLUMN_TEMPS_PREPARATION+" INTEGER NOT NULL, "
-			+RECETTE_COLUMN_TEMPS_CUISSON+" INTEGER "
+			+RECETTE_COLUMN_TEMPS_CUISSON+" INTEGER, "
+			+RECETTE_COLUMN_NOTE+" INTEGER, "
+			+RECETTE_COLUMN_NB_PERSONNE+" INTEGER "
             +"); ";
 
 	/*******************************

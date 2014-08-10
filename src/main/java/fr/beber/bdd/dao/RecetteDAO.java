@@ -31,7 +31,9 @@ public class RecetteDAO extends Repository<Recette> {
 			BDD.RECETTE_COLUMN_NAME,
 			BDD.RECETTE_COLUMN_PREPARATION,
 			BDD.RECETTE_COLUMN_TEMPS_PREPARATION,
-			BDD.RECETTE_COLUMN_TEMPS_CUISSON
+			BDD.RECETTE_COLUMN_TEMPS_CUISSON,
+            BDD.RECETTE_COLUMN_NOTE,
+            BDD.RECETTE_COLUMN_NB_PERSONNE
 	};
 
     /**
@@ -86,6 +88,8 @@ public class RecetteDAO extends Repository<Recette> {
 		contentValues.put(mColumn[3], recette.getTempsPreparation());
         if(recette.getTempsCuisson()!=null)
 		    contentValues.put(mColumn[4], recette.getTempsCuisson());
+        contentValues.put(mColumn[5], recette.getNote());
+        contentValues.put(mColumn[6], recette.getNbPersonne());
 
 		mBDD.insert(BDD.TN_RECETTE, null, contentValues);
 		Log.d(TAG, "Sortie");
@@ -135,6 +139,8 @@ public class RecetteDAO extends Repository<Recette> {
         recette.setPreparation(cursor.getString(BDD.RECETTE_NUM_PREPARATION));
         recette.setTempsPreparation(cursor.getInt(BDD.RECETTE_NUM_TEMPS_PREPARATION));
         recette.setTempsCuisson(cursor.getInt(BDD.RECETTE_NUM_TEMPS_CUISSON));
+        recette.setNote(cursor.getInt(BDD.RECETTE_NUM_NOTE));
+        recette.setNbPersonne(cursor.getInt(BDD.RECETTE_NUM_NB_PERSONNE));
 
         final CompositionDAO compositionDAO = new CompositionDAO(mSQLOH);
         recette.setCompositionList(compositionDAO.getByIdRecette(recette.getId()));

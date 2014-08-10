@@ -57,6 +57,8 @@ public class InitBD {
                 "Enfournez-les 9 à 11 min, suivant si vous les souhaitez respectivement « extra-moelleux, moelleux ou crousti-moelleux »... Vous m’en direz des nouvelles!");
         recette.setTempsPreparation(10);
         recette.setTempsCuisson(15);
+        recette.setNote(4);
+        recette.setNbPersonne(15);
 
         Log.d(TAG,recette.toString());
         final RecetteDAO recetteDAO = new RecetteDAO(context);
