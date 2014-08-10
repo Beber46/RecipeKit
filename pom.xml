@@ -23,9 +23,21 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.google.android</groupId>
+            <groupId>com.android.support</groupId>
             <artifactId>support-v4</artifactId>
-            <version>r6</version>
+            <version>18.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.android.support</groupId>
+            <artifactId>appcompat-v7</artifactId>
+            <version>18.0.0</version>
+            <type>apklib</type>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.android.support</groupId>
+            <artifactId>appcompat-v7</artifactId>
+            <version>18.0.0</version>
         </dependency>
         <dependency>
             <groupId>xmlpull</groupId>
