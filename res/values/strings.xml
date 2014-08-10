@@ -10,4 +10,14 @@
     <string name="action_new">New</string>
     <string name="action_edit">Edit</string>
 
+    <string-array name="drawer_menu">
+        <item>Mes Recettes</item>
+        <item>Recette du jour</item>
+        <item>Mise à jour</item>
+        <item>Aléatoires</item>
+        <item>À propos</item>
+    </string-array>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
 </resources>
