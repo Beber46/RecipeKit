@@ -32,8 +32,10 @@ public class FirstPage extends Activity {
 
         final RecetteDAO recetteDAO = new RecetteDAO(this);
         recetteDAO.Open();
-        if(recetteDAO.getAll().size()<1)
+        if(recetteDAO.getAll().size()<1) {
             initBD.createRecetteMike(this);
+            recetteDAO.Open();
+        }
         final StableArrayAdapter stableArrayAdapter = new StableArrayAdapter(this,
                 android.R.layout.simple_list_item_1, this.constructionListeRecette(recetteDAO.getAll()));
 
