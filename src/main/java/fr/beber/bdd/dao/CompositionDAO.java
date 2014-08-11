@@ -27,6 +27,7 @@ public class CompositionDAO extends Repository<Composition> {
     /**
      * Conserve le contexte sur un même objet.
      */
+    //TODO: voir s'il y a pas mieux
     private Context mContext = null;
 
     /**
