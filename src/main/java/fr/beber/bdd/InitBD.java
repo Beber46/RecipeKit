@@ -25,9 +25,19 @@ public class InitBD {
 
     private static final String TAG = "InitBD";
 
-    public InitBD(final Context context) {
+    /**
+     * Permet de créer la recette de mike.
+     * @param context
+     */
+    public void createRecetteMike(final Context context){
         final List<Composition> compositionList = this.creationComposition(context);
-        Log.d(TAG," Nombre de Composition créé: "+compositionList.size());
+        final RecetteDAO recetteDAO = new RecetteDAO(context);
+        recetteDAO.Open();
+        final Recette recette = recetteDAO.getAll().get(0);
+        recetteDAO.Close();
+        Log.d(TAG," Nombre de Composition créé: "+recette.getCompositionList().size());
+        Log.d(TAG," Recette: "+recette.toString());
+
     }
 
     /**
@@ -47,6 +57,8 @@ public class InitBD {
                 "Enfournez-les 9 à 11 min, suivant si vous les souhaitez respectivement « extra-moelleux, moelleux ou crousti-moelleux »... Vous m’en direz des nouvelles!");
         recette.setTempsPreparation(10);
         recette.setTempsCuisson(15);
+        recette.setNote(4);
+        recette.setNbPersonne(15);
 
         Log.d(TAG,recette.toString());
         final RecetteDAO recetteDAO = new RecetteDAO(context);

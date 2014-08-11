@@ -3,6 +3,7 @@ package fr.beber.bdd.dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import fr.beber.bdd.BDD;
 import fr.beber.bdd.Repository;
@@ -49,6 +50,14 @@ public class CompositionDAO extends Repository<Composition> {
 	}
 
     /**
+     * Constructeur
+     * @param sqLiteOpenHelper Définit le contexte à utiliser.
+     */
+    public CompositionDAO(final SQLiteOpenHelper sqLiteOpenHelper){
+        mSQLOH = sqLiteOpenHelper;
+    }
+
+    /**
      * Permet de récupérer la liste des Compositions.
      *
      * @return La liste des compositions trouvée.
@@ -76,6 +85,19 @@ public class CompositionDAO extends Repository<Composition> {
         Log.d(TAG, "Sortie");
 		return convertCursorToObject(c);
 	}
+
+    /**
+     * Permet de retourner la liste des compositions d'une recette en fonction de l'identifiant d'une recette.
+     * @param idRecette Identifiant d'une recette.
+     * @return Une liste de composition.
+     */
+    public List<Composition> getByIdRecette(final Integer idRecette){
+        Log.d(TAG, "Entree");
+        final Cursor cursor = mBDD.query(BDD.TN_COMPOSITION, mColumn , BDD.COMPOSITION_COLUMN_ID_RECETTE + " = " + String.valueOf(idRecette), null, null, null, null);
+
+        Log.d(TAG, "Sortie");
+        return this.convertCursorToListObject(cursor);
+    }
 
     /**
      * Permet d'enregistrer une composition.
