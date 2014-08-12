@@ -19,11 +19,6 @@ import java.util.List;
 public class UnitDAO extends Repository<Unit>{
 
     /**
-     * Tag à utiliser pour le LOG
-     */
-	private static final String TAG = "UnitRepo";
-
-    /**
      * Champs en base de données de {@link Unit}
      */
 	private String[] mColumn = new String[]{
@@ -37,7 +32,7 @@ public class UnitDAO extends Repository<Unit>{
      * @param context Définit le contexte à utiliser.
      */
 	public UnitDAO(final Context context){
-		mSQLOH = new BDD(context, null);
+		mSQLOH = new BDD(context);
 	}
 
     /**
@@ -47,10 +42,10 @@ public class UnitDAO extends Repository<Unit>{
      */
 	@Override
 	public List<Unit> getAll() {
-        Log.d(TAG, "Entree");
+        Log.d(this.getClass().getName(), "Entree");
 		final Cursor cursor = mBDD.query(BDD.TN_UNIT, mColumn , null, null, null, null, null);
 
-        Log.d(TAG, "Sortie");
+        Log.d(this.getClass().getName(), "Sortie");
 		return convertCursorToListObject(cursor);
 	}
 
@@ -62,11 +57,11 @@ public class UnitDAO extends Repository<Unit>{
      */
 	@Override
 	public Unit getById(final Integer id) {
-        Log.d(TAG, "Entree");
-		final Cursor cursor = mBDD.query(BDD.TN_UNIT, mColumn , String.valueOf(id), null, null, null, null);
+        Log.d(this.getClass().getName(), "Entree");
+		final Cursor cursor = mBDD.query(BDD.TN_UNIT, mColumn , id.toString(), null, null, null, null);
 
-        Log.d(TAG, "Sortie");
-		return convertCursorToObject(cursor);
+        Log.d(this.getClass().getName(), "Sortie");
+		return convertCursorToOneObject(cursor);
 	}
 
     /**
@@ -76,7 +71,7 @@ public class UnitDAO extends Repository<Unit>{
      */
 	@Override
 	public void save(final Unit unit) {
-		Log.d(TAG, "Entree");
+		Log.d(this.getClass().getName(), "Entree");
 		ContentValues contentValues = new ContentValues();
 
 		contentValues.put(mColumn[1], unit.getName());
@@ -84,7 +79,7 @@ public class UnitDAO extends Repository<Unit>{
 		    contentValues.put(mColumn[2], unit.getAbreviation());
 
 		mBDD.insert(BDD.TN_UNIT, null, contentValues);
-		Log.d(TAG, "Sortie");
+		Log.d(this.getClass().getName(), "Sortie");
 	}
 
     /**
@@ -94,13 +89,13 @@ public class UnitDAO extends Repository<Unit>{
      */
 	@Override
 	public void update(final Unit unit) {
-		Log.d(TAG, "Entree");
+		Log.d(this.getClass().getName(), "Entree");
 		final ContentValues contentValues = new ContentValues();
 
 		contentValues.put(mColumn[1], unit.getName());
 		
 		mBDD.update(BDD.TN_UNIT, contentValues, mColumn[0] + "=?", new String[]{String.valueOf(unit.getId())});
-		Log.d(TAG, "Sortie");
+		Log.d(this.getClass().getName(), "Sortie");
 	}
 
     /**
@@ -110,9 +105,9 @@ public class UnitDAO extends Repository<Unit>{
      */
 	@Override
 	public void delete(final Integer id) {
-		Log.d(TAG, "Entree");
+		Log.d(this.getClass().getName(), "Entree");
 		mBDD.delete(BDD.TN_UNIT, mColumn[0] + "=?", new String[]{String.valueOf(id)});
-		Log.d(TAG, "Sortie");
+		Log.d(this.getClass().getName(), "Sortie");
 	}
 
     /**

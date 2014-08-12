@@ -10,27 +10,27 @@ public class Composition {
     /**
      * Identifiant de la composition.
      */
-	private Integer id;
+    private Integer id;
 
     /**
-     * Produit présent dans la composition
+     * Identifiant d'un produit.
      */
-	private Produit produit;
+    private Integer idProduit;
 
     /**
      * Identifiant de la recette.
      */
-	private Integer idRecette;
+    private Integer idRecette;
 
     /**
      * Quantite de produit dans la recette.
      */
-	private Float quantite;
+    private Float quantite;
 
     /**
      * Idnetifiant de l'unité de la quantite.
      */
-	private Integer idUnit;
+    private Integer idUnit;
 
     /**
      * Permet d'obtenir l'identifiant de la composition.
@@ -48,18 +48,18 @@ public class Composition {
     }
 
     /**
-     * Permet d'obtenir le produit de la composition.
-     * @return Le produit de la composition.
+     * Permet d'obtenir l'identifiant du produit.
+     * @return Un identifiant de produit.
      */
-    public Produit getProduit() {
-        return produit;
+    public Integer getIdProduit() {
+        return idProduit;
     }
 
     /**
-     * Permet de changer le produit de la composition.
+     * Permet de changer l'identifiant du produit.
      */
-    public void setProduit(Produit produit) {
-        this.produit = produit;
+    public void setIdProduit(Integer idProduit) {
+        this.idProduit = idProduit;
     }
 
     /**
@@ -115,9 +115,9 @@ public class Composition {
         Composition that = (Composition) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (idProduit != null ? !idProduit.equals(that.idProduit) : that.idProduit != null) return false;
         if (idRecette != null ? !idRecette.equals(that.idRecette) : that.idRecette != null) return false;
         if (idUnit != null ? !idUnit.equals(that.idUnit) : that.idUnit != null) return false;
-        if (produit != null ? !produit.equals(that.produit) : that.produit != null) return false;
         if (quantite != null ? !quantite.equals(that.quantite) : that.quantite != null) return false;
 
         return true;
@@ -126,7 +126,7 @@ public class Composition {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (produit != null ? produit.hashCode() : 0);
+        result = 31 * result + (idProduit != null ? idProduit.hashCode() : 0);
         result = 31 * result + (idRecette != null ? idRecette.hashCode() : 0);
         result = 31 * result + (quantite != null ? quantite.hashCode() : 0);
         result = 31 * result + (idUnit != null ? idUnit.hashCode() : 0);
@@ -137,7 +137,7 @@ public class Composition {
     public String toString() {
         return "Composition[" +
                 "id=" + id +
-                ", produit=" + produit +
+                ", idProduit=" + idProduit +
                 ", idRecette=" + idRecette +
                 ", quantite=" + quantite +
                 ", idUnit=" + idUnit +

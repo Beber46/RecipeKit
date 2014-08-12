@@ -4,10 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Classe BDD permettant des créer et mettre à jour la base de données. Elle permet également d'accéder aux constantes propres aux tables.
- * //TODO: Vérifier que le _id est vrai (beaucoup de commentaires disent que oui)
  */
 public class BDD  extends SQLiteOpenHelper {
 
@@ -24,7 +24,7 @@ public class BDD  extends SQLiteOpenHelper {
 	/*******************************
 	 * Création de la table Produit
 	 */
-	public static final String TN_PRODUIT = "Produit";
+	public static final String TN_PRODUIT = "PRODUIT";
 	public static final String PRODUIT_COLUMN_ID = "_id";
 	public static final int PRODUIT_NUM_ID = 0;
 	public static final String PRODUIT_COLUMN_NAME = "NAME";
@@ -131,7 +131,7 @@ public class BDD  extends SQLiteOpenHelper {
      * @param context Définit le contexte à utiliser.
      */
     public BDD(final Context context) {
-        super(context, BASE_NAME, null, DATABASE_VERSION);
+        this(context,null);
     }
 
 	@Override
@@ -158,10 +158,11 @@ public class BDD  extends SQLiteOpenHelper {
 	public void onUpgrade(final SQLiteDatabase sqLiteDatabase, final int oldVersion, final int newVersion) {
 
 	    if (newVersion > DATABASE_VERSION) {
-            sqLiteDatabase.execSQL("DROP TABLE " + TN_COMPOSITION + ";");
-            sqLiteDatabase.execSQL("DROP TABLE " + TN_PRODUIT + ";");
-            sqLiteDatabase.execSQL("DROP TABLE " + TN_RECETTE + ";");
-            sqLiteDatabase.execSQL("DROP TABLE " + TN_UNIT + ";");
+            Log.w(BDD.class.getName(), "Upgrading database from version " + oldVersion + " to " + newVersion + ", which will destroy all old data");
+            sqLiteDatabase.execSQL("DROP TABLE IF EXISTS  " + TN_COMPOSITION + ";");
+            sqLiteDatabase.execSQL("DROP TABLE IF EXISTS  " + TN_PRODUIT + ";");
+            sqLiteDatabase.execSQL("DROP TABLE IF EXISTS  " + TN_RECETTE + ";");
+            sqLiteDatabase.execSQL("DROP TABLE IF EXISTS  " + TN_UNIT + ";");
 	        this.onCreate(sqLiteDatabase);
 	    }
 	}

@@ -23,20 +23,18 @@ import java.util.List;
  */
 public class InitBD {
 
-    private static final String TAG = "InitBD";
-
     /**
      * Permet de créer la recette de mike.
      * @param context
      */
     public void createRecetteMike(final Context context){
-        final List<Composition> compositionList = this.creationComposition(context);
+        this.creationComposition(context);
         final RecetteDAO recetteDAO = new RecetteDAO(context);
-        recetteDAO.Open();
+        recetteDAO.open();
         final Recette recette = recetteDAO.getAll().get(0);
-        recetteDAO.Close();
-        Log.d(TAG," Nombre de Composition créé: "+recette.getCompositionList().size());
-        Log.d(TAG," Recette: "+recette.toString());
+        recetteDAO.close();
+        Log.d(this.getClass().getName()," Nombre de Composition créé: "+recette.getCompositionList().size());
+        Log.d(this.getClass().getName()," Recette: "+recette.toString());
 
     }
 
@@ -47,6 +45,8 @@ public class InitBD {
      * @return Recette créée.
      */
     private Recette creationRecette(final Context context){
+        final RecetteDAO recetteDAO = new RecetteDAO(context);
+        recetteDAO.open();
         Recette recette = new Recette();
         recette.setName("Cookie Mike");
         recette.setPreparation("Mélangez la farine, les sucres, le sel, et la levure dans un grand saladier.\n" +
@@ -60,15 +60,11 @@ public class InitBD {
         recette.setNote(4);
         recette.setNbPersonne(15);
 
-        Log.d(TAG,recette.toString());
-        final RecetteDAO recetteDAO = new RecetteDAO(context);
-        recetteDAO.Open();
+        Log.d(this.getClass().getName(),recette.toString());
         recetteDAO.save(recette);
-        recetteDAO.Close();
 
-        recetteDAO.Open();
         recette = recetteDAO.getAll().get(0);
-        recetteDAO.Close();
+        recetteDAO.close();
 
         return recette;
     }
@@ -81,75 +77,48 @@ public class InitBD {
      */
     private List<Produit> creationListeProduit(final Context context){
 
+        final ProduitDAO produitDAO = new ProduitDAO(context);
+        produitDAO.open();
         Produit produit = new Produit();
         produit.setName("Farine");
 
-        final ProduitDAO produitDAO = new ProduitDAO(context);
-        produitDAO.Open();
         produitDAO.save(produit);
-        produitDAO.Close();
-        
 
         produit = new Produit();
         produit.setName("Cassonade");
-        produitDAO.Open();
         produitDAO.save(produit);
-        produitDAO.Close();
-        
 
         produit = new Produit();
         produit.setName("Sucre Vanillé");
-        produitDAO.Open();
         produitDAO.save(produit);
-        produitDAO.Close();
-        
 
         produit = new Produit();
         produit.setName("Sel");
-        produitDAO.Open();
         produitDAO.save(produit);
-        produitDAO.Close();
-        
 
         produit = new Produit();
         produit.setName("Levure");
-        produitDAO.Open();
         produitDAO.save(produit);
-        produitDAO.Close();
-        
 
         produit = new Produit();
         produit.setName("Oeuf");
-        produitDAO.Open();
         produitDAO.save(produit);
-        produitDAO.Close();
-        
 
         produit = new Produit();
         produit.setName("Beure");
-        produitDAO.Open();
         produitDAO.save(produit);
-        produitDAO.Close();
-        
 
         produit = new Produit();
         produit.setName("Miel");
-        produitDAO.Open();
         produitDAO.save(produit);
-        produitDAO.Close();
-        
 
         produit = new Produit();
         produit.setName("Pépites de Chocolat");
-        produitDAO.Open();
         produitDAO.save(produit);
-        produitDAO.Close();
-        
 
-        produitDAO.Open();
+
         final List<Produit> produitList = produitDAO.getAll();
-        produitDAO.Close();
-        
+        produitDAO.close();
         return produitList;
     }
 
@@ -161,37 +130,28 @@ public class InitBD {
      */
     private List<Unit> creationUnite(final Context context){
 
+        final UnitDAO unitDAO = new UnitDAO(context);
+        unitDAO.open();
         Unit unit = new Unit();
         unit.setName("Gramme");
         unit.setAbreviation("g");
 
-        final UnitDAO unitDAO = new UnitDAO(context);
-        unitDAO.Open();
         unitDAO.save(unit);
-        unitDAO.Close();
 
-        unitDAO.Open();
         unit = new Unit();
         unit.setName("Sachet");
         unitDAO.save(unit);
-        unitDAO.Close();
 
-        unitDAO.Open();
         unit = new Unit();
         unit.setName("Pincée");
         unitDAO.save(unit);
-        unitDAO.Close();
 
-        unitDAO.Open();
         unit = new Unit();
         unit.setName("Cuillère à café");
         unitDAO.save(unit);
-        unitDAO.Close();
 
-        unitDAO.Open();
         final List<Unit> unitList = unitDAO.getAll();
-        unitDAO.Close();
-
+        unitDAO.close();
         return unitList;
     }
 
@@ -200,96 +160,79 @@ public class InitBD {
      * @param context
      * @return Liste créée.
      */
-    private List<Composition> creationComposition(final Context context){
+    private void creationComposition(final Context context){
 
         final Recette recette = this.creationRecette(context);
         final List<Unit> unitList =  this.creationUnite(context);
         final List<Produit> produitList =  this.creationListeProduit(context);
 
+        Log.d(this.getClass().getName()," recette : "+recette);
+        Log.d(this.getClass().getName()," unitList : "+unitList);
+        Log.d(this.getClass().getName()," produitList : "+produitList);
+
         Composition composition = new Composition();
         final CompositionDAO compositionDAO = new CompositionDAO(context);
+        compositionDAO.open();
 
         composition.setIdRecette(recette.getId());
-        composition.setProduit(produitList.get(0));//farine
+        composition.setIdProduit(produitList.get(0).getId());//farine
         composition.setIdUnit(unitList.get(0).getId());//g
         composition.setQuantite(new Float(250));
-        compositionDAO.Open();
         compositionDAO.save(composition);
-        compositionDAO.Close();
 
         composition = new Composition();
         composition.setIdRecette(recette.getId());
-        composition.setProduit(produitList.get(1));//sucre
+        composition.setIdProduit(produitList.get(1).getId());//sucre
         composition.setIdUnit(unitList.get(0).getId());//g
         composition.setQuantite(new Float(150));
-        compositionDAO.Open();
         compositionDAO.save(composition);
-        compositionDAO.Close();
 
         composition = new Composition();
         composition.setIdRecette(recette.getId());
-        composition.setProduit(produitList.get(2));//sucre vanillé
+        composition.setIdProduit(produitList.get(2).getId());//sucre vanillé
         composition.setIdUnit(unitList.get(1).getId());//sachet
         composition.setQuantite(new Float(0.5));
-        compositionDAO.Open();
         compositionDAO.save(composition);
-        compositionDAO.Close();
 
         composition = new Composition();
         composition.setIdRecette(recette.getId());
-        composition.setProduit(produitList.get(3));//sel
+        composition.setIdProduit(produitList.get(3).getId());//sel
         composition.setIdUnit(unitList.get(2).getId());//pincé
         composition.setQuantite(new Float(1));
-        compositionDAO.Open();
         compositionDAO.save(composition);
-        compositionDAO.Close();
 
         composition = new Composition();
         composition.setIdRecette(recette.getId());
-        composition.setProduit(produitList.get(4));//levure
+        composition.setIdProduit(produitList.get(4).getId());//levure
         composition.setIdUnit(unitList.get(1).getId());//sachet
         composition.setQuantite(new Float(1));
-        compositionDAO.Open();
         compositionDAO.save(composition);
-        compositionDAO.Close();
 
         composition = new Composition();
         composition.setIdRecette(recette.getId());
-        composition.setProduit(produitList.get(5));//oeuf
+        composition.setIdProduit(produitList.get(5).getId());//oeuf
         composition.setQuantite(new Float(1));
-        compositionDAO.Open();
         compositionDAO.save(composition);
-        compositionDAO.Close();
 
         composition = new Composition();
         composition.setIdRecette(recette.getId());
-        composition.setProduit(produitList.get(6));//beurre
+        composition.setIdProduit(produitList.get(6).getId());//beurre
         composition.setIdUnit(unitList.get(0).getId());//g
         composition.setQuantite(new Float(125));
-        compositionDAO.Open();
         compositionDAO.save(composition);
-        compositionDAO.Close();
 
         composition = new Composition();
         composition.setIdRecette(recette.getId());
-        composition.setProduit(produitList.get(7));//beurre
+        composition.setIdProduit(produitList.get(7).getId());//beurre
         composition.setIdUnit(unitList.get(3).getId());//cuillère à café
         composition.setQuantite(new Float(2));
-        compositionDAO.Open();
         compositionDAO.save(composition);
-        compositionDAO.Close();
 
         composition = new Composition();
         composition.setIdRecette(recette.getId());
-        composition.setProduit(produitList.get(8));//pepite chocolat
-        compositionDAO.Open();
+        composition.setIdProduit(produitList.get(8).getId());//pepite chocolat
         compositionDAO.save(composition);
-        compositionDAO.Close();
 
-        compositionDAO.Open();
-        final List<Composition> compositionList = compositionDAO.getAll();
-        compositionDAO.Close();
-
-        return compositionList;
+        compositionDAO.close();
     }
 }

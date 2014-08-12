@@ -3,6 +3,7 @@ package fr.beber.bdd.dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import fr.beber.bdd.BDD;
 import fr.beber.bdd.Repository;
@@ -17,11 +18,6 @@ import java.util.List;
  * @version 1.0
  */
 public class ProduitDAO extends Repository<Produit> {
-
-    /**
-     * Tag à utiliser pour le LOG
-     */
-	private static final String TAG = "ProduitRepo";
 
     /**
      * Champs en base de données de {@link Produit}
@@ -39,6 +35,10 @@ public class ProduitDAO extends Repository<Produit> {
 		mSQLOH = new BDD(context, null);
 	}
 
+    public ProduitDAO(final SQLiteOpenHelper sqLiteOpenHelper){
+        mSQLOH = sqLiteOpenHelper;
+    }
+
     /**
      * Permet de récupérer la liste des produits.
      *
@@ -46,10 +46,10 @@ public class ProduitDAO extends Repository<Produit> {
      */
 	@Override
 	public List<Produit> getAll() {
-        Log.d(TAG, "Entree");
+        Log.d(this.getClass().getName(), "Entree");
 		final Cursor c = mBDD.query(BDD.TN_PRODUIT, mColumn , null, null, null, null, null);
 
-        Log.d(TAG, "Sortie");
+        Log.d(this.getClass().getName(), "Sortie");
 		return convertCursorToListObject(c);
 	}
 
@@ -61,11 +61,11 @@ public class ProduitDAO extends Repository<Produit> {
      */
 	@Override
 	public Produit getById(final Integer id) {
-        Log.d(TAG, "Entree");
-		final Cursor c = mBDD.query(BDD.TN_PRODUIT, mColumn , String.valueOf(id), null, null, null, null);
+        Log.d(this.getClass().getName(), "Entree");
+		final Cursor c = mBDD.query(BDD.TN_PRODUIT, mColumn ,  mColumn[0] + "=?", new String[]{String.valueOf(id)}, null, null, null);
 
-        Log.d(TAG, "Sortie");
-		return convertCursorToObject(c);
+        Log.d(this.getClass().getName(), "Sortie");
+		return convertCursorToOneObject(c);
 	}
 
     /**
@@ -75,13 +75,13 @@ public class ProduitDAO extends Repository<Produit> {
      */
 	@Override
 	public void save(final Produit produit) {
-		Log.d(TAG, "Entree");
+		Log.d(this.getClass().getName(), "Entree");
 		final ContentValues contentValues = new ContentValues();
 
 		contentValues.put(mColumn[1], produit.getName());
 
 		mBDD.insert(BDD.TN_PRODUIT, null, contentValues);
-		Log.d(TAG, "Sortie");
+		Log.d(this.getClass().getName(), "Sortie");
 	}
 
     /**
@@ -91,13 +91,13 @@ public class ProduitDAO extends Repository<Produit> {
      */
 	@Override
 	public void update(final Produit produit) {
-		Log.d(TAG, "Entree");
+		Log.d(this.getClass().getName(), "Entree");
 		final ContentValues contentValues = new ContentValues();
 
 		contentValues.put(mColumn[1], produit.getName());
 
 		mBDD.update(BDD.TN_PRODUIT, contentValues, mColumn[0] + "=?", new String[]{String.valueOf(produit.getId())});
-		Log.d(TAG, "Sortie");
+		Log.d(this.getClass().getName(), "Sortie");
 	}
 
     /**
@@ -107,9 +107,9 @@ public class ProduitDAO extends Repository<Produit> {
      */
 	@Override
 	public void delete(final Integer id) {
-		Log.d(TAG, "Entree");
+		Log.d(this.getClass().getName(), "Entree");
 		mBDD.delete(BDD.TN_PRODUIT, mColumn[0] + "=?", new String[]{String.valueOf(id)});
-		Log.d(TAG, "Sortie");
+		Log.d(this.getClass().getName(), "Sortie");
 	}
 
     /**
@@ -119,10 +119,10 @@ public class ProduitDAO extends Repository<Produit> {
      * @return Un produit.
      */
 	@Override
-	public Produit convertCursorToObject(Cursor cursor) {
-		
+	public Produit convertCursorToObject(final Cursor cursor) {
+
 		final Produit exec = new Produit();
-		
+
 		exec.setId(cursor.getInt(BDD.PRODUIT_NUM_ID));
 		exec.setName(cursor.getString(BDD.PRODUIT_NUM_NAME));
 		

@@ -20,17 +20,6 @@ import java.util.List;
 public class CompositionDAO extends Repository<Composition> {
 
     /**
-     * Tag à utiliser pour le LOG.
-     */
-	private static final String TAG = "CompositionRepo";
-
-    /**
-     * Conserve le contexte sur un même objet.
-     */
-    //TODO: voir s'il y a pas mieux
-    private Context mContext = null;
-
-    /**
      * Champs en base de données de {@link Composition}
      */
 	private final String[] mColumn = new String[]{
@@ -47,7 +36,6 @@ public class CompositionDAO extends Repository<Composition> {
      */
 	public CompositionDAO(final Context context){
 		mSQLOH = new BDD(context, null);
-        this.mContext = context;
 	}
 
     /**
@@ -65,10 +53,10 @@ public class CompositionDAO extends Repository<Composition> {
      */
 	@Override
 	public List<Composition> getAll() {
-        Log.d(TAG, "Entree");
+        Log.d(this.getClass().getName(), "Entree");
 		final Cursor c = mBDD.query(BDD.TN_COMPOSITION, mColumn , null, null, null, null, null);
 
-        Log.d(TAG, "Sortie");
+        Log.d(this.getClass().getName(), "Sortie");
 		return this.convertCursorToListObject(c);
 	}
 
@@ -80,11 +68,11 @@ public class CompositionDAO extends Repository<Composition> {
      */
 	@Override
 	public Composition getById(final Integer id) {
-        Log.d(TAG, "Entree");
+        Log.d(this.getClass().getName(), "Entree");
 		final Cursor c = mBDD.query(BDD.TN_COMPOSITION, mColumn , String.valueOf(id), null, null, null, null);
 
-        Log.d(TAG, "Sortie");
-		return convertCursorToObject(c);
+        Log.d(this.getClass().getName(), "Sortie");
+		return convertCursorToOneObject(c);
 	}
 
     /**
@@ -93,10 +81,10 @@ public class CompositionDAO extends Repository<Composition> {
      * @return Une liste de composition.
      */
     public List<Composition> getByIdRecette(final Integer idRecette){
-        Log.d(TAG, "Entree");
+        Log.d(this.getClass().getName(), "Entree");
         final Cursor cursor = mBDD.query(BDD.TN_COMPOSITION, mColumn , BDD.COMPOSITION_COLUMN_ID_RECETTE + " = " + String.valueOf(idRecette), null, null, null, null);
 
-        Log.d(TAG, "Sortie");
+        Log.d(this.getClass().getName(), "Sortie");
         return this.convertCursorToListObject(cursor);
     }
 
@@ -107,12 +95,12 @@ public class CompositionDAO extends Repository<Composition> {
      */
 	@Override
 	public void save(final Composition composition) {
-		Log.d(TAG, "Entree");
+		Log.d(this.getClass().getName(), "Entree");
 
         final ContentValues contentValues = this.getContentValues(composition);
 		
 		mBDD.insert(BDD.TN_COMPOSITION, null, contentValues);
-		Log.d(TAG, "Sortie");
+		Log.d(this.getClass().getName(), "Sortie");
 	}
 
     /**
@@ -122,11 +110,11 @@ public class CompositionDAO extends Repository<Composition> {
      */
 	@Override
 	public void update(final Composition composition) {
-		Log.d(TAG, "Entree");
+		Log.d(this.getClass().getName(), "Entree");
 		final ContentValues contentValues = this.getContentValues(composition);
 		
 		mBDD.update(BDD.TN_COMPOSITION, contentValues, mColumn[0] + "=?", new String[]{String.valueOf(composition.getId())});
-		Log.d(TAG, "Sortie");
+		Log.d(this.getClass().getName(), "Sortie");
 	}
 
     /**
@@ -138,13 +126,10 @@ public class CompositionDAO extends Repository<Composition> {
     private ContentValues getContentValues(final Composition composition){
         final ContentValues contentValues = new ContentValues();
 
-        //TODO: vérifier que cela marche avec un save
-        contentValues.put(mColumn[1], composition.getProduit().getId());
+        contentValues.put(mColumn[1], composition.getIdProduit());
         contentValues.put(mColumn[2], composition.getIdRecette());
-        if(composition.getQuantite()!=null)
-            contentValues.put(mColumn[3], composition.getQuantite());
-        if(composition.getIdUnit()!=null)
-            contentValues.put(mColumn[4], composition.getIdUnit());
+        contentValues.put(mColumn[3], composition.getQuantite());
+        contentValues.put(mColumn[4], composition.getIdUnit());
 
         return contentValues;
     }
@@ -156,9 +141,9 @@ public class CompositionDAO extends Repository<Composition> {
      */
 	@Override
 	public void delete(final Integer id) {
-		Log.d(TAG, "Entree");
+		Log.d(this.getClass().getName(), "Entree");
 		mBDD.delete(BDD.TN_COMPOSITION, mColumn[0] + "=?", new String[]{String.valueOf(id)});
-		Log.d(TAG, "Sortie");
+		Log.d(this.getClass().getName(), "Sortie");
 	}
 
     /**
@@ -168,14 +153,12 @@ public class CompositionDAO extends Repository<Composition> {
      * @return Une compositiion.
      */
 	@Override
-	public Composition convertCursorToObject(final Cursor cursor) {
+	public Composition convertCursorToObject(Cursor cursor) {
 		
 		final Composition exec = new Composition();
 
-        final ProduitDAO produitDAO = new ProduitDAO(mContext);
-        //TODO: vérifier que cela marche avec un retour d'un getAll par exemple
 		exec.setId(cursor.getInt(BDD.COMPOSITION_NUM_ID));
-		exec.setProduit(produitDAO.getById(cursor.getInt(BDD.COMPOSITION_NUM_ID_PRODUIT)));
+		exec.setIdProduit(cursor.getInt(BDD.COMPOSITION_NUM_ID_PRODUIT));
 		exec.setIdRecette(cursor.getInt(BDD.COMPOSITION_NUM_ID_RECETTE));
 		exec.setQuantite(cursor.getFloat(BDD.COMPOSITION_NUM_QUANTITE));
 		exec.setIdUnit(cursor.getInt(BDD.COMPOSITION_NUM_ID_UNIT));

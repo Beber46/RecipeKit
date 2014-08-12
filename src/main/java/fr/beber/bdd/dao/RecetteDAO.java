@@ -19,11 +19,6 @@ import java.util.List;
 public class RecetteDAO extends Repository<Recette> {
 
     /**
-     * Tag à utiliser pour le LOG
-     */
-	private static final String TAG = "RecetteRepo";
-
-    /**
      * Champs en base de données de {@link Recette}
      */
 	private String[] mColumn = new String[]{
@@ -51,10 +46,10 @@ public class RecetteDAO extends Repository<Recette> {
      */
 	@Override
 	public List<Recette> getAll() {
-        Log.d(TAG, "Entree");
+        Log.d(this.getClass().getName(), "Entree");
 		final Cursor cursor = mBDD.query(BDD.TN_RECETTE, mColumn , null, null, null, null, null);
 
-        Log.d(TAG, "Sortie");
+        Log.d(this.getClass().getName(), "Sortie");
 		return convertCursorToListObject(cursor);
 	}
 
@@ -66,11 +61,11 @@ public class RecetteDAO extends Repository<Recette> {
      */
 	@Override
 	public Recette getById(final Integer id) {
-        Log.d(TAG, "Entree");
+        Log.d(this.getClass().getName(), "Entree");
 		final Cursor cursor = mBDD.query(BDD.TN_RECETTE, mColumn , String.valueOf(id), null, null, null, null);
 
-        Log.d(TAG, "Sortie");
-		return convertCursorToObject(cursor);
+        Log.d(this.getClass().getName(), "Sortie");
+		return convertCursorToOneObject(cursor);
 	}
 
     /**
@@ -80,7 +75,7 @@ public class RecetteDAO extends Repository<Recette> {
      */
 	@Override
 	public void save(final Recette recette) {
-		Log.d(TAG, "Entree");
+		Log.d(this.getClass().getName(), "Entree");
 		final ContentValues contentValues = new ContentValues();
 
 		contentValues.put(mColumn[1], recette.getName());
@@ -92,7 +87,7 @@ public class RecetteDAO extends Repository<Recette> {
         contentValues.put(mColumn[6], recette.getNbPersonne());
 
 		mBDD.insert(BDD.TN_RECETTE, null, contentValues);
-		Log.d(TAG, "Sortie");
+		Log.d(this.getClass().getName(), "Sortie");
 	}
 
     /**
@@ -102,13 +97,13 @@ public class RecetteDAO extends Repository<Recette> {
      */
 	@Override
 	public void update(final Recette recette) {
-		Log.d(TAG, "Entree");
+		Log.d(this.getClass().getName(), "Entree");
 		final ContentValues contentValues = new ContentValues();
 
 		contentValues.put(mColumn[1], recette.getName());
 		
 		mBDD.update(BDD.TN_RECETTE, contentValues, mColumn[0] + "=?", new String[]{String.valueOf(recette.getId())});
-		Log.d(TAG, "Sortie");
+		Log.d(this.getClass().getName(), "Sortie");
 	}
 
     /**
@@ -118,9 +113,9 @@ public class RecetteDAO extends Repository<Recette> {
      */
 	@Override
 	public void delete(final Integer id) {
-		Log.d(TAG, "Entree delete");
+		Log.d(this.getClass().getName(), "Entree");
 		mBDD.delete(BDD.TN_RECETTE, mColumn[0] + "=?", new String[]{String.valueOf(id)});
-		Log.d(TAG, "Sortie delete");
+		Log.d(this.getClass().getName(), "Sortie");
 	}
 
     /**
@@ -131,7 +126,7 @@ public class RecetteDAO extends Repository<Recette> {
      */
 	@Override
 	public Recette convertCursorToObject(final Cursor cursor) {
-		
+
 		final Recette recette = new Recette();
 
         recette.setId(cursor.getInt(BDD.RECETTE_NUM_ID));

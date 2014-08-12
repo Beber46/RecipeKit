@@ -31,16 +31,23 @@ public abstract class Repository<T> implements IRepository<T>{
 	}
 
     /**
-     * Ouverture d'une connexion BDD
+     * Ouverture d'une connexion BDD en mode écriture.
      */
-	public void Open(){
+	public void open(){
         mBDD = mSQLOH.getWritableDatabase();
 	}
 
     /**
-     * Fermeture d'une connexion BDD
+     * Overture d'une connexion BDD en mode lecture.
      */
-	public void Close(){
+    public void openOnlyRead(){
+        mBDD = mSQLOH.getReadableDatabase();
+    }
+
+    /**
+     * Fermeture d'une connexion BDD.
+     */
+	public void close(){
         mBDD.close();
 	}
 
