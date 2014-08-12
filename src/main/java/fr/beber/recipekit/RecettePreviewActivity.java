@@ -104,38 +104,11 @@ public class RecettePreviewActivity extends Activity {
         final List<String> stringList = new ArrayList<String>();
         for(Composition composition : recette.getCompositionList()) {
             Log.d(this.getClass().getName()," Composition ( "+ composition.getId() + " ) :"+composition);
-            stringList.add(composition.getQuantite()+" "+ this.getAbreviationUnitParId(composition.getIdUnit()) + " " + this.getNomProduitParId(composition.getIdProduit()));
+            final String abreviation = composition.getUnit()!=null?composition.getUnit().getAbreviation() + " ":"";
+            final String quantite = composition.getQuantite().compareTo(new Float(0))>0?composition.getQuantite()+" ":"";
+            stringList.add(quantite+ abreviation + composition.getProduit().getName());
         }
         return stringList;
     }
 
-    /**
-     * Permet de récupérer le nom d'un produit par son identifiant.
-     * @param id Identifiant d'un produit.
-     * @return Le nom du produit.
-     */
-    private String getNomProduitParId(final Integer id){
-        final ProduitDAO produitDAO = new ProduitDAO(this);
-        produitDAO.openOnlyRead();
-        final Produit produit = produitDAO.getById(id);
-        produitDAO.close();
-
-        return produit.getName();
-    }
-
-    /**
-     * Permet de récupérer l'abréviation d'une unité par son identifiant.
-     * @param id Identifiant d'une unité.
-     * @return L'abréviation du produit.
-     */
-    private String getAbreviationUnitParId(final Integer id){
-        if(id.compareTo(new Integer(0))>0) {
-            final UnitDAO unitDAO = new UnitDAO(this);
-            unitDAO.openOnlyRead();
-            final Unit unit = unitDAO.getById(id);
-            unitDAO.close();
-            return unit.getName();
-        }
-        return "";
-    }
 }

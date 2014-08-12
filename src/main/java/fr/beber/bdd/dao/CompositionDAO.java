@@ -126,10 +126,10 @@ public class CompositionDAO extends Repository<Composition> {
     private ContentValues getContentValues(final Composition composition){
         final ContentValues contentValues = new ContentValues();
 
-        contentValues.put(mColumn[1], composition.getIdProduit());
+        contentValues.put(mColumn[1], composition.getProduit().getId());
         contentValues.put(mColumn[2], composition.getIdRecette());
         contentValues.put(mColumn[3], composition.getQuantite());
-        contentValues.put(mColumn[4], composition.getIdUnit());
+        contentValues.put(mColumn[4], composition.getUnit()!=null?composition.getUnit().getId():null);
 
         return contentValues;
     }
@@ -155,15 +155,17 @@ public class CompositionDAO extends Repository<Composition> {
 	@Override
 	public Composition convertCursorToObject(Cursor cursor) {
 		
-		final Composition exec = new Composition();
+		final Composition composition = new Composition();
 
-		exec.setId(cursor.getInt(BDD.COMPOSITION_NUM_ID));
-		exec.setIdProduit(cursor.getInt(BDD.COMPOSITION_NUM_ID_PRODUIT));
-		exec.setIdRecette(cursor.getInt(BDD.COMPOSITION_NUM_ID_RECETTE));
-		exec.setQuantite(cursor.getFloat(BDD.COMPOSITION_NUM_QUANTITE));
-		exec.setIdUnit(cursor.getInt(BDD.COMPOSITION_NUM_ID_UNIT));
+        final ProduitDAO produitDAO = new ProduitDAO(mSQLOH);
+        final UnitDAO unitDAO = new UnitDAO(mSQLOH);
+        composition.setId(cursor.getInt(BDD.COMPOSITION_NUM_ID));
+        composition.setProduit(produitDAO.getById(cursor.getInt(BDD.COMPOSITION_NUM_ID_PRODUIT)));
+        composition.setIdRecette(cursor.getInt(BDD.COMPOSITION_NUM_ID_RECETTE));
+        composition.setQuantite(cursor.getFloat(BDD.COMPOSITION_NUM_QUANTITE));
+        composition.setUnit(cursor.getInt(BDD.COMPOSITION_NUM_ID_UNIT)>0?unitDAO.getById(cursor.getInt(BDD.COMPOSITION_NUM_ID_UNIT)):null);
 
-		return exec;
+		return composition;
 	}
 
 }

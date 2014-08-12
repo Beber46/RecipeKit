@@ -3,6 +3,7 @@ package fr.beber.bdd.dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import fr.beber.bdd.BDD;
 import fr.beber.bdd.Repository;
@@ -34,6 +35,14 @@ public class UnitDAO extends Repository<Unit>{
 	public UnitDAO(final Context context){
 		mSQLOH = new BDD(context);
 	}
+
+    /**
+     * Constructeur
+     * @param sqLiteOpenHelper Définit le sqLiteOpenHelper à utiliser.
+     */
+    public UnitDAO(final SQLiteOpenHelper sqLiteOpenHelper){
+        mSQLOH = sqLiteOpenHelper;
+    }
 
     /**
      * Permet de récupérer la liste d'unité.

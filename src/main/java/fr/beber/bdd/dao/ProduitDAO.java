@@ -35,6 +35,10 @@ public class ProduitDAO extends Repository<Produit> {
 		mSQLOH = new BDD(context, null);
 	}
 
+    /**
+     * Constructeur
+     * @param sqLiteOpenHelper Définit le sqLiteOpenHelper à utiliser.
+     */
     public ProduitDAO(final SQLiteOpenHelper sqLiteOpenHelper){
         mSQLOH = sqLiteOpenHelper;
     }

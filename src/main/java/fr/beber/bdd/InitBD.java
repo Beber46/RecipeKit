@@ -175,62 +175,62 @@ public class InitBD {
         compositionDAO.open();
 
         composition.setIdRecette(recette.getId());
-        composition.setIdProduit(produitList.get(0).getId());//farine
-        composition.setIdUnit(unitList.get(0).getId());//g
+        composition.setProduit(produitList.get(0));//farine
+        composition.setUnit(unitList.get(0));//g
         composition.setQuantite(new Float(250));
         compositionDAO.save(composition);
 
         composition = new Composition();
         composition.setIdRecette(recette.getId());
-        composition.setIdProduit(produitList.get(1).getId());//sucre
-        composition.setIdUnit(unitList.get(0).getId());//g
+        composition.setProduit(produitList.get(1));//sucre
+        composition.setUnit(unitList.get(0));//g
         composition.setQuantite(new Float(150));
         compositionDAO.save(composition);
 
         composition = new Composition();
         composition.setIdRecette(recette.getId());
-        composition.setIdProduit(produitList.get(2).getId());//sucre vanillé
-        composition.setIdUnit(unitList.get(1).getId());//sachet
+        composition.setProduit(produitList.get(2));//sucre vanillé
+        composition.setUnit(unitList.get(1));//sachet
         composition.setQuantite(new Float(0.5));
         compositionDAO.save(composition);
 
         composition = new Composition();
         composition.setIdRecette(recette.getId());
-        composition.setIdProduit(produitList.get(3).getId());//sel
-        composition.setIdUnit(unitList.get(2).getId());//pincé
+        composition.setProduit(produitList.get(3));//sel
+        composition.setUnit(unitList.get(2));//pincé
         composition.setQuantite(new Float(1));
         compositionDAO.save(composition);
 
         composition = new Composition();
         composition.setIdRecette(recette.getId());
-        composition.setIdProduit(produitList.get(4).getId());//levure
-        composition.setIdUnit(unitList.get(1).getId());//sachet
+        composition.setProduit(produitList.get(4));//levure
+        composition.setUnit(unitList.get(1));//sachet
         composition.setQuantite(new Float(1));
         compositionDAO.save(composition);
 
         composition = new Composition();
         composition.setIdRecette(recette.getId());
-        composition.setIdProduit(produitList.get(5).getId());//oeuf
+        composition.setProduit(produitList.get(5));//oeuf
         composition.setQuantite(new Float(1));
         compositionDAO.save(composition);
 
         composition = new Composition();
         composition.setIdRecette(recette.getId());
-        composition.setIdProduit(produitList.get(6).getId());//beurre
-        composition.setIdUnit(unitList.get(0).getId());//g
+        composition.setProduit(produitList.get(6));//beurre
+        composition.setUnit(unitList.get(0));//g
         composition.setQuantite(new Float(125));
         compositionDAO.save(composition);
 
         composition = new Composition();
         composition.setIdRecette(recette.getId());
-        composition.setIdProduit(produitList.get(7).getId());//beurre
-        composition.setIdUnit(unitList.get(3).getId());//cuillère à café
+        composition.setProduit(produitList.get(7));//beurre
+        composition.setUnit(unitList.get(3));//cuillère à café
         composition.setQuantite(new Float(2));
         compositionDAO.save(composition);
 
         composition = new Composition();
         composition.setIdRecette(recette.getId());
-        composition.setIdProduit(produitList.get(8).getId());//pepite chocolat
+        composition.setProduit(produitList.get(8));//pepite chocolat
         compositionDAO.save(composition);
 
         compositionDAO.close();
