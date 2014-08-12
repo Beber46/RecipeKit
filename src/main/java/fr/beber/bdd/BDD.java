@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 /**
  * Classe BDD permettant des créer et mettre à jour la base de données. Elle permet également d'accéder aux constantes propres aux tables.
+ * //TODO: Vérifier que le _id est vrai (beaucoup de commentaires disent que oui)
  */
 public class BDD  extends SQLiteOpenHelper {
 
@@ -24,7 +25,7 @@ public class BDD  extends SQLiteOpenHelper {
 	 * Création de la table Produit
 	 */
 	public static final String TN_PRODUIT = "Produit";
-	public static final String PRODUIT_COLUMN_ID = "ID";
+	public static final String PRODUIT_COLUMN_ID = "_id";
 	public static final int PRODUIT_NUM_ID = 0;
 	public static final String PRODUIT_COLUMN_NAME = "NAME";
 	public static final int PRODUIT_NUM_NAME = 1;
@@ -40,7 +41,7 @@ public class BDD  extends SQLiteOpenHelper {
 	 * Création de la table Recette
 	 */
 	public static final String TN_RECETTE = "RECETTE";
-	public static final String RECETTE_COLUMN_ID = "ID";
+	public static final String RECETTE_COLUMN_ID = "_id";
 	public static final int RECETTE_NUM_ID = 0;
 	public static final String RECETTE_COLUMN_NAME = "NAME";
 	public static final int RECETTE_NUM_NAME = 1;
@@ -72,7 +73,7 @@ public class BDD  extends SQLiteOpenHelper {
 	 * Création de la table Recette
 	 */
 	public static final String TN_UNIT = "UNIT";
-	public static final String UNIT_COLUMN_ID = "ID";
+	public static final String UNIT_COLUMN_ID = "_id";
 	public static final int UNIT_NUM_ID = 0;
 	public static final String UNIT_COLUMN_NAME = "NAME";
 	public static final int UNIT_NUM_NAME = 1;
@@ -91,7 +92,7 @@ public class BDD  extends SQLiteOpenHelper {
      * Création de la table Composition
      */
     public static final String TN_COMPOSITION = "COMPOSITION";
-    public static final String COMPOSITION_COLUMN_ID = "ID";
+    public static final String COMPOSITION_COLUMN_ID = "_id";
     public static final int COMPOSITION_NUM_ID = 0;
     public static final String COMPOSITION_COLUMN_ID_PRODUIT = "ID_PRODUIT";
     public static final int COMPOSITION_NUM_ID_PRODUIT = 1;
