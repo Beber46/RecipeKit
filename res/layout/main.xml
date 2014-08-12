@@ -30,6 +30,11 @@
     <ListView
             android:id="@+id/listeViewRecette"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:clickable="false"
+            android:padding="10dp"
+            android:divider="#ff898989"
+            android:dividerHeight="30dp"
+            android:background="#ff898989"/>
 
 </android.support.v4.widget.DrawerLayout>

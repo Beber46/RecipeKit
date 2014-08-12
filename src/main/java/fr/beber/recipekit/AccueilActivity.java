@@ -18,10 +18,9 @@ import android.widget.ListView;
 import fr.beber.adapter.StableArrayAdapter;
 import fr.beber.bdd.InitBD;
 import fr.beber.bdd.dao.RecetteDAO;
-import fr.beber.bean.Produit;
 import fr.beber.bean.Recette;
-import fr.beber.bean.Unit;
 import fr.beber.util.DrawerItemClickListener;
+import fr.beber.util.SpeedScrollListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,9 +34,7 @@ import java.util.List;
  */
 public class AccueilActivity extends Activity {
 
-    private String[] mMenuStrings;
-    private DrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
+    private SpeedScrollListener listener;
     private ActionBarDrawerToggle mDrawerToggle;
 
     @Override
@@ -57,13 +54,18 @@ public class AccueilActivity extends Activity {
         if(recetteDAO.getAll().size()<1) {
             recetteDAO.close();
             initBD.createRecetteMike(this);
+            initBD.createRecetteMike(this);
             recetteDAO.openOnlyRead();
         }
 
-        final StableArrayAdapter stableArrayAdapter = new StableArrayAdapter(this,
-                android.R.layout.simple_list_item_1, this.constructionListeRecette(recetteDAO.getAll()));
-
+        listener = new SpeedScrollListener();
         final ListView listView = (ListView) findViewById(R.id.listeViewRecette);
+        listView.setOnScrollListener(listener);
+
+        final StableArrayAdapter stableArrayAdapter = new StableArrayAdapter(this,
+                listener, this.constructionListeRecette(recetteDAO.getAll()));
+
+
         recetteDAO.close();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -82,9 +84,9 @@ public class AccueilActivity extends Activity {
      * Permet d'initialiser l'ActionBarDrawerToggle
      */
     private void initMDrawer(){
-        mMenuStrings = getResources().getStringArray(R.array.drawer_menu);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        final String[] mMenuStrings = getResources().getStringArray(R.array.drawer_menu);
+        final DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final ListView mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
         mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list, mMenuStrings));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener(mDrawerLayout,mDrawerList));

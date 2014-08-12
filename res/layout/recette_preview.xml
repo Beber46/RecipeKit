@@ -10,9 +10,13 @@
             android:id="@+id/imageViewRecette"
             style="@style/Theme.AppCompat.Light"
             android:background="#ff000000"
+            android:src="@drawable/cookie"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="50dp"
-            android:layout_centerHorizontal="true"/>
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentEnd="true"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -20,18 +24,17 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="textViewNomRecette"
             android:id="@+id/textViewNomRecette"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="10dp"
+            android:layout_below="@+id/imageViewRecette"
             android:layout_centerHorizontal="true"/>
 
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_below="@+id/imageViewRecette"
+            android:layout_below="@+id/textViewNomRecette"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:id="@+id/linearLayout">
 
         <TextView
@@ -50,14 +53,14 @@
                 android:layout_marginLeft="20dp"
                 android:text="textViewCuisson"
                 android:id="@+id/textViewCuisson"/>
-        <TextView
+        <!--<TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="20dp"
                 android:text="textViewProduit"
-                android:id="@+id/textViewProduit"/>
+                android:id="@+id/textViewProduit"/>-->
 
         <ListView
                 android:layout_width="match_parent"

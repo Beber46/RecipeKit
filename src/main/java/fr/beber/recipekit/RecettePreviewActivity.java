@@ -9,14 +9,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
-import fr.beber.adapter.StableArrayAdapter;
-import fr.beber.bdd.dao.ProduitDAO;
+import fr.beber.adapter.GenericBaseAdapter;
 import fr.beber.bdd.dao.RecetteDAO;
-import fr.beber.bdd.dao.UnitDAO;
 import fr.beber.bean.Composition;
-import fr.beber.bean.Produit;
 import fr.beber.bean.Recette;
-import fr.beber.bean.Unit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,16 +41,7 @@ public class RecettePreviewActivity extends Activity {
         final TextView tempsCuisson = (TextView)findViewById(R.id.textViewCuisson);
         tempsCuisson.setText("Temps de cuisson : "+recette.getTempsCuisson().toString());
 
-        /*final UnitDAO unitDAO = new UnitDAO(this);
-        unitDAO.openOnlyRead();
-        final List<Unit> unit = unitDAO.getAll();
-        for(Unit u : unit) {
-            Log.d(this.getClass().getName(), "u : " + u);
-            Log.d(this.getClass().getName(), "u 2 : " + unitDAO.getById(u.getId()));
-        }
-        unitDAO.close();*/
-
-        final StableArrayAdapter stableArrayAdapter = new StableArrayAdapter(this,
+        final GenericBaseAdapter stableArrayAdapter = new GenericBaseAdapter(this,
                 android.R.layout.simple_list_item_1, this.constructionListeRecette(recette));
         final ListView listView = (ListView) findViewById(R.id.listViewProduit);
         listView.setAdapter(stableArrayAdapter);
