@@ -10,6 +10,7 @@ import fr.beber.bean.Composition;
 import fr.beber.bean.Produit;
 import fr.beber.bean.Recette;
 import fr.beber.bean.Unit;
+import fr.beber.util.Constantes;
 
 import java.util.List;
 
@@ -48,11 +49,11 @@ public class InitBD {
         recetteDAO.open();
         Recette recette = new Recette();
         recette.setName("Cookies");
-        recette.setPreparation("Mélangez la farine, les sucres, le sel, et la levure dans un grand saladier.\n" +
-                "Faites fondre le beurre, et ajoutez-y, l'œuf battu et les 2 cuillères de miel, et incorporez le tout à la préparation.\n" +
-                "Ajouter les pépites de chocolat (de préférence au lait, mais j'ai déjà goûté des cookies aux 3 chocolats, et c'est exquis), et mélanger avec une cuillère en bois.\n" +
-                "Préchauffez votre four à 220°C (thermostat 7-8), avec la grille au plus bas.\n" +
-                "Façonnez des cookies d’environ 10 cm de diamètre, et disposez-les sur une plaque. Ils doivent être assez espacés.\n" +
+        recette.setPreparation("Mélangez la farine, les sucres, le sel, et la levure dans un grand saladier." + Constantes.DOUBLE_LINE_SEPARATOR +
+                "Faites fondre le beurre, et ajoutez-y, l'œuf battu et les 2 cuillères de miel, et incorporez le tout à la préparation." + Constantes.DOUBLE_LINE_SEPARATOR +
+                "Ajouter les pépites de chocolat (de préférence au lait, mais j'ai déjà goûté des cookies aux 3 chocolats, et c'est exquis), et mélanger avec une cuillère en bois." + Constantes.DOUBLE_LINE_SEPARATOR +
+                "Préchauffez votre four à 220°C (thermostat 7-8), avec la grille au plus bas." + Constantes.DOUBLE_LINE_SEPARATOR +
+                "Façonnez des cookies d’environ 10 cm de diamètre, et disposez-les sur une plaque. Ils doivent être assez espacés." + Constantes.DOUBLE_LINE_SEPARATOR +
                 "Enfournez-les 9 à 11 min, suivant si vous les souhaitez respectivement « extra-moelleux, moelleux ou crousti-moelleux »... Vous m’en direz des nouvelles!");
         recette.setTempsPreparation(10);
         recette.setTempsCuisson(15);

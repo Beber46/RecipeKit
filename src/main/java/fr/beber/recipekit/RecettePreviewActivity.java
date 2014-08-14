@@ -1,16 +1,14 @@
 package fr.beber.recipekit;
 
-import android.app.ActionBar;
 import android.app.Activity;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import fr.beber.bdd.dao.RecetteDAO;
 import fr.beber.bean.Composition;
 import fr.beber.bean.Recette;
+import fr.beber.util.Constantes;
 
 /**
  * Cette classe permet d'afficher une préview de la recette
@@ -23,7 +21,7 @@ public class RecettePreviewActivity extends Activity {
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recette_preview);
-
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         final Recette recette = this.getRecetteCookie();
 
         final TextView nomRecette = (TextView) findViewById(R.id.textViewNomRecette);
@@ -36,21 +34,10 @@ public class RecettePreviewActivity extends Activity {
         tempsCuisson.setText("Temps de cuisson : " + recette.getTempsCuisson().toString());
 
         final TextView listeProduit = (TextView) findViewById(R.id.textViewProduit);
-        listeProduit.setText(this.constructionListeRecette(recette));
+        listeProduit.setText("Ingrédients : " + Constantes.DOUBLE_LINE_SEPARATOR + this.constructionListeRecette(recette));
 
         final TextView preparation = (TextView) findViewById(R.id.textViewPreparation);
-        preparation.setText("Préparation : \n" + recette.getPreparation());
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(final Menu menu) {
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            final ActionBar actionBar = getActionBar();
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-
-        return super.onCreateOptionsMenu(menu);
+        preparation.setText("Préparation : " + Constantes.DOUBLE_LINE_SEPARATOR + recette.getPreparation());
     }
 
     /**
@@ -90,7 +77,7 @@ public class RecettePreviewActivity extends Activity {
             Log.d(this.getClass().getName(), " Composition ( " + composition.getId() + " ) :" + composition);
             final String abreviation = composition.getUnit() != null ? composition.getUnit().getAbreviation() + " " : "";
             final String quantite = composition.getQuantite().compareTo(new Float(0)) > 0 ? composition.getQuantite() + " " : "";
-            retour = retour + quantite + abreviation + composition.getProduit().getName() + "\n";
+            retour = retour + quantite + abreviation + composition.getProduit().getName() + Constantes.LINE_SEPARATOR;
         }
         return retour;
     }

@@ -39,6 +39,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="textViewNomRecette"
+                    android:layout_marginTop="10dp"
                     android:id="@+id/textViewNomRecette"
                     android:layout_centerHorizontal="true"/>
 
@@ -48,6 +49,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_below="@+id/textViewNomRecette"
                     android:text="textViewPreparation"
                     android:id="@+id/textViewTempsPreparation"/>
@@ -70,6 +72,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_below="@+id/textViewTempsCuisson"
                     android:text="textViewProduit"
+                    android:layout_marginTop="10dp"
                     android:id="@+id/textViewProduit"/>
 
             <TextView
@@ -77,15 +80,11 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:layout_below="@+id/textViewProduit"
                     android:text="textViewProduit"
                     android:id="@+id/textViewPreparation"/>
-
-            <!--<ListView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/listViewProduit"/>-->
 
             <RelativeLayout
                     android:orientation="vertical"
