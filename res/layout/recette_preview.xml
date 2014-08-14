@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
     <ImageView
             android:layout_width="150dp"
@@ -18,53 +19,75 @@
             android:layout_marginBottom="20dp"
             android:layout_alignParentEnd="true"/>
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="textViewNomRecette"
-            android:id="@+id/textViewNomRecette"
-            android:layout_below="@+id/imageViewRecette"
-            android:layout_centerHorizontal="true"/>
-
-    <LinearLayout
-            android:orientation="vertical"
+    <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_below="@+id/textViewNomRecette"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="20dp"
-            android:id="@+id/linearLayout">
+            android:layout_alignParentTop="true">
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="20dp"
-                android:text="textViewPreparation"
-                android:id="@+id/textViewPreparation"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="20dp"
-                android:text="textViewCuisson"
-                android:id="@+id/textViewCuisson"/>
-        <!--<TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="20dp"
-                android:text="textViewProduit"
-                android:id="@+id/textViewProduit"/>-->
+        <RelativeLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:id="@+id/relativeLayoutRecette"
+                android:layout_marginTop="150dp"
+                android:layout_alignParentTop="true"
+                android:layout_height="fill_parent"
+                android:background="#ffffffff"
+                android:clickable="false">
 
-        <ListView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/listViewProduit"/>
-    </LinearLayout>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="textViewNomRecette"
+                    android:id="@+id/textViewNomRecette"
+                    android:layout_centerHorizontal="true"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_below="@+id/textViewNomRecette"
+                    android:text="textViewPreparation"
+                    android:id="@+id/textViewPreparation"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_below="@+id/textViewPreparation"
+                    android:text="textViewCuisson"
+                    android:id="@+id/textViewCuisson"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_below="@+id/textViewCuisson"
+                    android:text="textViewProduit"
+                    android:id="@+id/textViewProduit"/>
+
+            <!--<ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/listViewProduit"/>-->
+
+            <RelativeLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:id="@+id/relativeLayoutEnd"
+                    android:layout_height="150dp"
+                    android:layout_below="@+id/textViewProduit"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="150dp">
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

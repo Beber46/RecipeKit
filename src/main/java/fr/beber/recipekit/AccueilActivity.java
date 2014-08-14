@@ -53,7 +53,6 @@ public class AccueilActivity extends Activity {
         if (recetteDAO.getAll().size() < 1) {
             recetteDAO.close();
             initBD.createRecetteMike(this);
-            initBD.createRecetteMike(this);
             recetteDAO.openOnlyRead();
         }
 
@@ -62,7 +61,7 @@ public class AccueilActivity extends Activity {
         listView.setOnScrollListener(listener);
 
         final StableArrayAdapter stableArrayAdapter = new StableArrayAdapter(this,
-                listener, this.constructionListeRecette(recetteDAO.getAll()));
+                listener, recetteDAO.getAll());
 
 
         recetteDAO.close();

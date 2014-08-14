@@ -10,7 +10,7 @@
     <FrameLayout
             android:id="@+id/content_frame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"/>
 
     <!-- android:layout_gravity="start" tells DrawerLayout to treat
          this as a sliding drawer on the left side for left-to-right
@@ -27,14 +27,15 @@
             android:divider="@android:color/transparent"
             android:dividerHeight="0dp"
             android:background="#111"/>
+
     <ListView
             android:id="@+id/listeViewRecette"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clickable="false"
+            android:clickable="true"
             android:padding="10dp"
             android:divider="#ff898989"
-            android:dividerHeight="30dp"
-            android:background="#ff898989"/>
+            android:background="#ff898989"
+            android:drawSelectorOnTop="false"/>
 
 </android.support.v4.widget.DrawerLayout>

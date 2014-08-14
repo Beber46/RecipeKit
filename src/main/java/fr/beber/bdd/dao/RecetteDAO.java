@@ -135,7 +135,7 @@ public class RecetteDAO extends Repository<Recette> {
         recette.setPreparation(cursor.getString(BDD.RECETTE_NUM_PREPARATION));
         recette.setTempsPreparation(cursor.getInt(BDD.RECETTE_NUM_TEMPS_PREPARATION));
         recette.setTempsCuisson(cursor.getInt(BDD.RECETTE_NUM_TEMPS_CUISSON));
-        recette.setNote(cursor.getInt(BDD.RECETTE_NUM_NOTE));
+        recette.setNote(cursor.getFloat(BDD.RECETTE_NUM_NOTE));
         recette.setNbPersonne(cursor.getInt(BDD.RECETTE_NUM_NB_PERSONNE));
 
         final CompositionDAO compositionDAO = new CompositionDAO(mSQLOH);

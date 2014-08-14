@@ -45,7 +45,7 @@ public abstract class GPlusListAdapter<T> extends BaseAdapter {
 
         previousPostition = -1;
         positionsMapper = new SparseBooleanArray(size);
-        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        final WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         point = new Point();
         windowManager.getDefaultDisplay().getSize(point);
 

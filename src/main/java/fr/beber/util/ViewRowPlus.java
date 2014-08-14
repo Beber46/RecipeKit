@@ -1,6 +1,7 @@
 package fr.beber.util;
 
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 /**
@@ -13,14 +14,16 @@ public class ViewRowPlus {
 
     private ImageView imageView;
     private TextView textView;
+    private RatingBar ratingBar;
 
     public ViewRowPlus() {
 
     }
 
-    public ViewRowPlus(final ImageView imageView, final TextView textView) {
+    public ViewRowPlus(final ImageView imageView, final TextView textView, final RatingBar ratingBar) {
         this.imageView = imageView;
         this.textView = textView;
+        this.ratingBar = ratingBar;
     }
 
     public ImageView getImageView() {
@@ -39,6 +42,14 @@ public class ViewRowPlus {
         this.textView = textView;
     }
 
+    public RatingBar getRatingBar() {
+        return ratingBar;
+    }
+
+    public void setRatingBar(RatingBar ratingBar) {
+        this.ratingBar = ratingBar;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,6 +58,7 @@ public class ViewRowPlus {
         ViewRowPlus that = (ViewRowPlus) o;
 
         if (imageView != null ? !imageView.equals(that.imageView) : that.imageView != null) return false;
+        if (ratingBar != null ? !ratingBar.equals(that.ratingBar) : that.ratingBar != null) return false;
         if (textView != null ? !textView.equals(that.textView) : that.textView != null) return false;
 
         return true;
@@ -56,6 +68,7 @@ public class ViewRowPlus {
     public int hashCode() {
         int result = imageView != null ? imageView.hashCode() : 0;
         result = 31 * result + (textView != null ? textView.hashCode() : 0);
+        result = 31 * result + (ratingBar != null ? ratingBar.hashCode() : 0);
         return result;
     }
 
@@ -64,6 +77,7 @@ public class ViewRowPlus {
         return "ViewRowPlus[" +
                 "imageView=" + imageView +
                 ", textView=" + textView +
+                ", ratingBar=" + ratingBar +
                 ']';
     }
 }

@@ -7,15 +7,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
 import android.widget.TextView;
-import fr.beber.adapter.GenericBaseAdapter;
 import fr.beber.bdd.dao.RecetteDAO;
 import fr.beber.bean.Composition;
 import fr.beber.bean.Recette;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Cette classe permet d'afficher une préview de la recette
@@ -40,10 +35,13 @@ public class RecettePreviewActivity extends Activity {
         final TextView tempsCuisson = (TextView) findViewById(R.id.textViewCuisson);
         tempsCuisson.setText("Temps de cuisson : " + recette.getTempsCuisson().toString());
 
-        final GenericBaseAdapter stableArrayAdapter = new GenericBaseAdapter(this,
+        /*final GenericBaseAdapter stableArrayAdapter = new GenericBaseAdapter(this,
                 android.R.layout.simple_list_item_1, this.constructionListeRecette(recette));
         final ListView listView = (ListView) findViewById(R.id.listViewProduit);
-        listView.setAdapter(stableArrayAdapter);
+        listView.setAdapter(stableArrayAdapter);*/
+
+        final TextView listeProduit = (TextView) findViewById(R.id.textViewProduit);
+        listeProduit.setText(this.constructionListeRecette(recette));
     }
 
     @Override
@@ -87,7 +85,7 @@ public class RecettePreviewActivity extends Activity {
      * @param recette à partir de laquelle on compose la liste de produits.
      * @return Liste de string (produit + quantité).
      */
-    private List<String> constructionListeRecette(final Recette recette) {
+    /*private List<String> constructionListeRecette(final Recette recette) {
         final List<String> stringList = new ArrayList<String>();
         for (Composition composition : recette.getCompositionList()) {
             Log.d(this.getClass().getName(), " Composition ( " + composition.getId() + " ) :" + composition);
@@ -96,6 +94,15 @@ public class RecettePreviewActivity extends Activity {
             stringList.add(quantite + abreviation + composition.getProduit().getName());
         }
         return stringList;
+    }*/
+    private String constructionListeRecette(final Recette recette) {
+        String retour = "- ";
+        for (Composition composition : recette.getCompositionList()) {
+            Log.d(this.getClass().getName(), " Composition ( " + composition.getId() + " ) :" + composition);
+            final String abreviation = composition.getUnit() != null ? composition.getUnit().getAbreviation() + " " : "";
+            final String quantite = composition.getQuantite().compareTo(new Float(0)) > 0 ? composition.getQuantite() + " " : "";
+            retour = retour + quantite + abreviation + composition.getProduit().getName() + "\n- ";
+        }
+        return retour;
     }
-
 }

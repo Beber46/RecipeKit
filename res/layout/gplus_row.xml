@@ -1,28 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical"
-              android:background="#FFFFFF"
-              android:padding="30dp">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+        >
 
     <ImageView
             android:id="@+id/imageViewRow"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="20dp"
+            android:layout_height="200dp"
             android:layout_gravity="center_vertical"
-            android:layout_margin="10dp"
             android:background="#ff000000"
-            android:src="@drawable/cookie"/>
+            android:src="@drawable/cookie"
+            android:layout_margin="5dp"/>
 
     <TextView
             android:id="@+id/textViewTitreRecette"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/black"
+            android:textColor="#ffffffff"
             android:text="Large Text"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:layout_alignBottom="@+id/imageViewRow"
+            android:layout_alignLeft="@+id/imageViewRow"
+            android:layout_alignStart="@+id/imageViewRow"
+            android:background="#cc000000"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:layout_alignRight="@+id/imageViewRow"
+            android:layout_alignEnd="@+id/imageViewRow"/>
 
-</LinearLayout>
+    <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ratingBarRowNote"
+            android:layout_alignRight="@+id/imageViewRow"
+            android:layout_alignEnd="@+id/imageViewRow"
+            style="?android:attr/ratingBarStyleSmall"
+            android:rating="2"
+            android:layout_alignBottom="@+id/imageViewRow"/>
+
+</RelativeLayout>

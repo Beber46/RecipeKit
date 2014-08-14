@@ -39,7 +39,7 @@ public class Recette {
     /**
      * Permet d'avoir une note pour la recette attribué par l'utilisateur.
      */
-    private Integer note;
+    private Float note;
 
     /**
      * Nombre de personne pour la recette.
@@ -140,7 +140,7 @@ public class Recette {
      *
      * @return Un entier compris entre 1-5.
      */
-    public Integer getNote() {
+    public Float getNote() {
         return note;
     }
 
@@ -149,7 +149,7 @@ public class Recette {
      *
      * @param note de la recette à changer.
      */
-    public void setNote(final Integer note) {
+    public void setNote(final Float note) {
         this.note = note;
     }
 

@@ -13,31 +13,19 @@ import android.util.Log;
 public class BDD extends SQLiteOpenHelper {
 
     /**
-     * Version de la base de données
-     */
-    private static final int DATABASE_VERSION = 1;
-
-    /**
-     * Nom du schéma
-     */
-    private static final String BASE_NAME = "recipekit.db";
-
-    /**
      * **************************** Création de la table Produit
      */
     public static final String TN_PRODUIT = "PRODUIT";
     public static final String PRODUIT_COLUMN_ID = "_id";
     public static final int PRODUIT_NUM_ID = 0;
     public static final String PRODUIT_COLUMN_NAME = "NAME";
-    public static final int PRODUIT_NUM_NAME = 1;
-
     /**
      * Permet de construire la requête pour créer la table produit
      */
     private static final String REQUETE_CREATION_PRODUIT = "CREATE TABLE " + TN_PRODUIT + " " +
             "(" + PRODUIT_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + PRODUIT_COLUMN_NAME + " TEXT); ";
-
+    public static final int PRODUIT_NUM_NAME = 1;
     /**
      * **************************** Création de la table Recette
      */
@@ -55,8 +43,6 @@ public class BDD extends SQLiteOpenHelper {
     public static final String RECETTE_COLUMN_NOTE = "NOTE";
     public static final int RECETTE_NUM_NOTE = 5;
     public static final String RECETTE_COLUMN_NB_PERSONNE = "NB_PERSONNE";
-    public static final int RECETTE_NUM_NB_PERSONNE = 6;
-
     /**
      * Permet de construire la requête pour créer la table recette
      */
@@ -66,10 +52,10 @@ public class BDD extends SQLiteOpenHelper {
             + RECETTE_COLUMN_PREPARATION + " TEXT NOT NULL, "
             + RECETTE_COLUMN_TEMPS_PREPARATION + " INTEGER NOT NULL, "
             + RECETTE_COLUMN_TEMPS_CUISSON + " INTEGER, "
-            + RECETTE_COLUMN_NOTE + " INTEGER, "
+            + RECETTE_COLUMN_NOTE + " FLOAT, "
             + RECETTE_COLUMN_NB_PERSONNE + " INTEGER "
             + "); ";
-
+    public static final int RECETTE_NUM_NB_PERSONNE = 6;
     /**
      * **************************** Création de la table Recette
      */
@@ -79,8 +65,6 @@ public class BDD extends SQLiteOpenHelper {
     public static final String UNIT_COLUMN_NAME = "NAME";
     public static final int UNIT_NUM_NAME = 1;
     public static final String UNIT_COLUMN_ABREVIATION = "ABREVIATION";
-    public static final int UNIT_NUM_ABREVIATION = 2;
-
     /**
      * Permet de construire la requête pour créer la table unité
      */
@@ -88,7 +72,7 @@ public class BDD extends SQLiteOpenHelper {
             "(" + UNIT_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + UNIT_COLUMN_ABREVIATION + " TEXT, "
             + UNIT_COLUMN_NAME + " TEXT); ";
-
+    public static final int UNIT_NUM_ABREVIATION = 2;
     /**
      * **************************** Création de la table Composition
      */
@@ -102,8 +86,6 @@ public class BDD extends SQLiteOpenHelper {
     public static final String COMPOSITION_COLUMN_QUANTITE = "QUANTITE";
     public static final int COMPOSITION_NUM_QUANTITE = 3;
     public static final String COMPOSITION_COLUMN_ID_UNIT = "ID_UNIT";
-    public static final int COMPOSITION_NUM_ID_UNIT = 4;
-
     /**
      * Permet de construire la requête pour créer la table composition
      */
@@ -117,6 +99,15 @@ public class BDD extends SQLiteOpenHelper {
             + " FOREIGN KEY (" + COMPOSITION_COLUMN_ID_RECETTE + ") REFERENCES " + TN_RECETTE + " (" + RECETTE_COLUMN_ID + "),"
             + " FOREIGN KEY (" + COMPOSITION_COLUMN_ID_UNIT + ") REFERENCES " + TN_UNIT + " (" + UNIT_COLUMN_ID + ")"
             + "); ";
+    public static final int COMPOSITION_NUM_ID_UNIT = 4;
+    /**
+     * Version de la base de données
+     */
+    private static final int DATABASE_VERSION = 1;
+    /**
+     * Nom du schéma
+     */
+    private static final String BASE_NAME = "recipekit.db";
 
     /**
      * Constructeur provenant de l'heritage
