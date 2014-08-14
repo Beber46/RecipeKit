@@ -7,16 +7,23 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Cette classe permet de créer une liste généric.
+ * Cette classe permet de créer une liste généric. Cette liste se compose de String pour assigner un nom à chaque
+ * liste.
  *
- * @author Bertrand
+ * @author Beber046
  * @version 1.0
- * @date 12/08/2014
  */
 public class GenericBaseAdapter extends ArrayAdapter<String> {
 
     private HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();
 
+    /**
+     * Contructeur, instancie la liste de string
+     *
+     * @param context            Le contexte courant.
+     * @param textViewResourceId
+     * @param objects
+     */
     public GenericBaseAdapter(final Context context, int textViewResourceId, final List<String> objects) {
         super(context, textViewResourceId, objects);
         for (int i = 0; i < objects.size(); ++i) {

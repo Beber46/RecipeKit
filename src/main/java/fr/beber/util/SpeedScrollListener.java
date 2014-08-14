@@ -6,9 +6,8 @@ import android.widget.AbsListView.OnScrollListener;
 /**
  * Cette classe est utilisé pour {@link fr.beber.adapter.GPlusListAdapter}.
  *
- * @author Bertrand
+ * @author Beber046
  * @version 1.0
- * @date 12/08/2014
  */
 public class SpeedScrollListener implements OnScrollListener {
 
@@ -17,7 +16,7 @@ public class SpeedScrollListener implements OnScrollListener {
     private double speed = 0;
 
     @Override
-    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+    public void onScroll(final AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
         if (previousFirstVisibleItem != firstVisibleItem) {
             currTime = System.currentTimeMillis();
             timeToScrollOneElement = currTime - previousEventTime;
@@ -30,7 +29,7 @@ public class SpeedScrollListener implements OnScrollListener {
     }
 
     @Override
-    public void onScrollStateChanged(AbsListView view, int scrollState) {
+    public void onScrollStateChanged(final AbsListView view, int scrollState) {
     }
 
     public double getSpeed() {

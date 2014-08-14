@@ -13,43 +13,43 @@ import java.util.List;
  * @author Beber46
  * @version 1.0
  */
-public abstract class Repository<T> implements IRepository<T>{
+public abstract class Repository<T> implements IRepository<T> {
     /**
      * Utiliser pour ouvrir ou fermer une connexion BDD
      */
-	protected static SQLiteDatabase mBDD;
+    protected static SQLiteDatabase mBDD;
     /**
      * Utiliser pour ouvrir ou fermer une connexion BDD
      */
-	protected static SQLiteOpenHelper mSQLOH;
+    protected static SQLiteOpenHelper mSQLOH;
 
     /**
      * Constructeur
      */
-	public Repository() {
-		
-	}
+    public Repository() {
+
+    }
 
     /**
      * Ouverture d'une connexion BDD en mode écriture.
      */
-	public void open(){
+    public void open() {
         mBDD = mSQLOH.getWritableDatabase();
-	}
+    }
 
     /**
      * Overture d'une connexion BDD en mode lecture.
      */
-    public void openOnlyRead(){
+    public void openOnlyRead() {
         mBDD = mSQLOH.getReadableDatabase();
     }
 
     /**
      * Fermeture d'une connexion BDD.
      */
-	public void close(){
+    public void close() {
         mBDD.close();
-	}
+    }
 
     /**
      * Permet de convertire un {@link android.database.Cursor} en liste de {@link T}.

@@ -4,12 +4,12 @@ public class Unit {
     /**
      * Identifiant d'une unité.
      */
-	private Integer id;
+    private Integer id;
 
     /**
      * Nom d'une unité.
      */
-	private String name;
+    private String name;
 
     /**
      * Abréviation du nom.
@@ -18,6 +18,7 @@ public class Unit {
 
     /**
      * Permet d'obtenir l'identifiant d'une unité.
+     *
      * @return Un identifiant d'une unité.
      */
     public Integer getId() {
@@ -33,6 +34,7 @@ public class Unit {
 
     /**
      * Permet d'obtenir le nom d'une unité.
+     *
      * @return Le nom d'une unité.
      */
     public String getName() {
@@ -48,6 +50,7 @@ public class Unit {
 
     /**
      * Permet d'obtenir l'abreviation d'une unité.
+     *
      * @return L'abreviation d'une unité.
      */
     public String getAbreviation() {

@@ -14,12 +14,12 @@ public class Recette {
     /**
      * Identifiant de la recette.
      */
-	private Integer id;
+    private Integer id;
 
     /**
      * Nom de la recette.
      */
-	private String name;
+    private String name;
 
     /**
      * Descriptif de la préparation.
@@ -27,7 +27,7 @@ public class Recette {
     private String preparation;
 
     /**
-     *  Temps de la préparation.
+     * Temps de la préparation.
      */
     private Integer tempsPreparation;
 
@@ -57,6 +57,7 @@ public class Recette {
 
     /**
      * Permet d'obtenir l'identifiant de la recette.
+     *
      * @return Un identifiant de recette.
      */
     public Integer getId() {
@@ -72,6 +73,7 @@ public class Recette {
 
     /**
      * Permet d'obtenir le nom de la recette.
+     *
      * @return Le nom de recette.
      */
     public String getName() {
@@ -87,6 +89,7 @@ public class Recette {
 
     /**
      * Permet d'obtenir la préparation de la recette.
+     *
      * @return La préparation de recette.
      */
     public String getPreparation() {
@@ -102,6 +105,7 @@ public class Recette {
 
     /**
      * Permet d'obtenir le temps de préparation de la recette.
+     *
      * @return Le temps de cuisson de recette.
      */
     public Integer getTempsPreparation() {
@@ -117,6 +121,7 @@ public class Recette {
 
     /**
      * Permet d'obtenir le temps de cuisson de la recette.
+     *
      * @return Le temps de cuisson de recette.
      */
     public Integer getTempsCuisson() {
@@ -132,6 +137,7 @@ public class Recette {
 
     /**
      * Permet d'obtenir la note de la recette.
+     *
      * @return Un entier compris entre 1-5.
      */
     public Integer getNote() {
@@ -140,6 +146,7 @@ public class Recette {
 
     /**
      * Change la note de la recette.
+     *
      * @param note de la recette à changer.
      */
     public void setNote(final Integer note) {
@@ -148,6 +155,7 @@ public class Recette {
 
     /**
      * Permet d'obtenir le nombre de personne de la recette.
+     *
      * @return Le nombre de personne.
      */
     public Integer getNbPersonne() {
@@ -155,7 +163,8 @@ public class Recette {
     }
 
     /**
-     *  Change le nombre de personne de la recette.
+     * Change le nombre de personne de la recette.
+     *
      * @param nbPersonne de la recette à changer.
      */
     public void setNbPersonne(Integer nbPersonne) {
@@ -164,6 +173,7 @@ public class Recette {
 
     /**
      * Permet d'obtenir la liste des compositions.
+     *
      * @return Liste des compositions.
      */
     public List<Composition> getCompositionList() {
@@ -179,6 +189,7 @@ public class Recette {
 
     /**
      * Permet d'ajouter une composition à la liste de composition de la recette.
+     *
      * @param composition à ajouter à la liste de composition.
      */
     public void addCompositionList(Composition composition) {

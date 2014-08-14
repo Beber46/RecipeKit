@@ -20,9 +20,8 @@ import java.util.List;
 /**
  * Cette classe permet d'afficher une préview de la recette
  *
- * @author Bertrand
+ * @author Beber046
  * @version 1.0
- * @date 10/08/2014
  */
 public class RecettePreviewActivity extends Activity {
     @Override
@@ -32,14 +31,14 @@ public class RecettePreviewActivity extends Activity {
 
         final Recette recette = this.getRecetteCookie();
 
-        final TextView nomRecette = (TextView)findViewById(R.id.textViewNomRecette);
+        final TextView nomRecette = (TextView) findViewById(R.id.textViewNomRecette);
         nomRecette.setText(recette.getName());
 
-        final TextView tempsPreparation = (TextView)findViewById(R.id.textViewPreparation);
-        tempsPreparation.setText("Temps de préparation : "+recette.getTempsPreparation().toString());
+        final TextView tempsPreparation = (TextView) findViewById(R.id.textViewPreparation);
+        tempsPreparation.setText("Temps de préparation : " + recette.getTempsPreparation().toString());
 
-        final TextView tempsCuisson = (TextView)findViewById(R.id.textViewCuisson);
-        tempsCuisson.setText("Temps de cuisson : "+recette.getTempsCuisson().toString());
+        final TextView tempsCuisson = (TextView) findViewById(R.id.textViewCuisson);
+        tempsCuisson.setText("Temps de cuisson : " + recette.getTempsCuisson().toString());
 
         final GenericBaseAdapter stableArrayAdapter = new GenericBaseAdapter(this,
                 android.R.layout.simple_list_item_1, this.constructionListeRecette(recette));
@@ -64,7 +63,7 @@ public class RecettePreviewActivity extends Activity {
      * @return La recette de cookie.
      * @deprecated
      */
-    private Recette getRecetteCookie(){
+    private Recette getRecetteCookie() {
         final RecetteDAO recetteDAO = new RecetteDAO(this);
         recetteDAO.openOnlyRead();
         final Recette recette = recetteDAO.getAll().get(0);
@@ -84,16 +83,17 @@ public class RecettePreviewActivity extends Activity {
 
     /**
      * Permet de construire une liste de string à partir des produits de la recettes.
+     *
      * @param recette à partir de laquelle on compose la liste de produits.
      * @return Liste de string (produit + quantité).
      */
-    private List<String> constructionListeRecette(final Recette recette){
+    private List<String> constructionListeRecette(final Recette recette) {
         final List<String> stringList = new ArrayList<String>();
-        for(Composition composition : recette.getCompositionList()) {
-            Log.d(this.getClass().getName()," Composition ( "+ composition.getId() + " ) :"+composition);
-            final String abreviation = composition.getUnit()!=null?composition.getUnit().getAbreviation() + " ":"";
-            final String quantite = composition.getQuantite().compareTo(new Float(0))>0?composition.getQuantite()+" ":"";
-            stringList.add(quantite+ abreviation + composition.getProduit().getName());
+        for (Composition composition : recette.getCompositionList()) {
+            Log.d(this.getClass().getName(), " Composition ( " + composition.getId() + " ) :" + composition);
+            final String abreviation = composition.getUnit() != null ? composition.getUnit().getAbreviation() + " " : "";
+            final String quantite = composition.getQuantite().compareTo(new Float(0)) > 0 ? composition.getQuantite() + " " : "";
+            stringList.add(quantite + abreviation + composition.getProduit().getName());
         }
         return stringList;
     }

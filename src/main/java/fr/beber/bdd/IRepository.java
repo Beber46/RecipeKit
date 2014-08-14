@@ -17,7 +17,7 @@ public interface IRepository<T> {
      *
      * @return La liste de {@link T} trouvée.
      */
-	public List<T> getAll();
+    public List<T> getAll();
 
     /**
      * Permet de récupérer un {@link T} en fonction de son identifiant <code>id</code>.

@@ -22,24 +22,26 @@ public class ProduitDAO extends Repository<Produit> {
     /**
      * Champs en base de données de {@link Produit}
      */
-	private final String[] mColumn = new String[]{
-			BDD.PRODUIT_COLUMN_ID,
-			BDD.PRODUIT_COLUMN_NAME
-	};
+    private final String[] mColumn = new String[]{
+            BDD.PRODUIT_COLUMN_ID,
+            BDD.PRODUIT_COLUMN_NAME
+    };
 
     /**
      * Constructeur
-     * @param context Définit le contexte à utiliser.
+     *
+     * @param context Le contexte courant.
      */
-	public ProduitDAO(final Context context){
-		mSQLOH = new BDD(context, null);
-	}
+    public ProduitDAO(final Context context) {
+        mSQLOH = new BDD(context, null);
+    }
 
     /**
      * Constructeur
+     *
      * @param sqLiteOpenHelper Définit le sqLiteOpenHelper à utiliser.
      */
-    public ProduitDAO(final SQLiteOpenHelper sqLiteOpenHelper){
+    public ProduitDAO(final SQLiteOpenHelper sqLiteOpenHelper) {
         mSQLOH = sqLiteOpenHelper;
     }
 
@@ -48,14 +50,14 @@ public class ProduitDAO extends Repository<Produit> {
      *
      * @return La liste des produits trouvée.
      */
-	@Override
-	public List<Produit> getAll() {
+    @Override
+    public List<Produit> getAll() {
         Log.d(this.getClass().getName(), "Entree");
-		final Cursor c = mBDD.query(BDD.TN_PRODUIT, mColumn , null, null, null, null, null);
+        final Cursor c = mBDD.query(BDD.TN_PRODUIT, mColumn, null, null, null, null, null);
 
         Log.d(this.getClass().getName(), "Sortie");
-		return convertCursorToListObject(c);
-	}
+        return convertCursorToListObject(c);
+    }
 
     /**
      * Permet de récupérer un produit en fonction de son identifiant <code>id</code>.
@@ -63,58 +65,58 @@ public class ProduitDAO extends Repository<Produit> {
      * @param id Identifiant d'un produit.
      * @return Le produit trouvé.
      */
-	@Override
-	public Produit getById(final Integer id) {
+    @Override
+    public Produit getById(final Integer id) {
         Log.d(this.getClass().getName(), "Entree");
-		final Cursor c = mBDD.query(BDD.TN_PRODUIT, mColumn ,  mColumn[0] + "=?", new String[]{String.valueOf(id)}, null, null, null);
+        final Cursor c = mBDD.query(BDD.TN_PRODUIT, mColumn, mColumn[0] + "=?", new String[]{String.valueOf(id)}, null, null, null);
 
         Log.d(this.getClass().getName(), "Sortie");
-		return convertCursorToOneObject(c);
-	}
+        return convertCursorToOneObject(c);
+    }
 
     /**
      * Permet d'enregistrer un produit.
      *
      * @param produit à enregistrer.
      */
-	@Override
-	public void save(final Produit produit) {
-		Log.d(this.getClass().getName(), "Entree");
-		final ContentValues contentValues = new ContentValues();
+    @Override
+    public void save(final Produit produit) {
+        Log.d(this.getClass().getName(), "Entree");
+        final ContentValues contentValues = new ContentValues();
 
-		contentValues.put(mColumn[1], produit.getName());
+        contentValues.put(mColumn[1], produit.getName());
 
-		mBDD.insert(BDD.TN_PRODUIT, null, contentValues);
-		Log.d(this.getClass().getName(), "Sortie");
-	}
+        mBDD.insert(BDD.TN_PRODUIT, null, contentValues);
+        Log.d(this.getClass().getName(), "Sortie");
+    }
 
     /**
      * Permet de mettre à jour un produit.
      *
      * @param produit à mettre à jour.
      */
-	@Override
-	public void update(final Produit produit) {
-		Log.d(this.getClass().getName(), "Entree");
-		final ContentValues contentValues = new ContentValues();
+    @Override
+    public void update(final Produit produit) {
+        Log.d(this.getClass().getName(), "Entree");
+        final ContentValues contentValues = new ContentValues();
 
-		contentValues.put(mColumn[1], produit.getName());
+        contentValues.put(mColumn[1], produit.getName());
 
-		mBDD.update(BDD.TN_PRODUIT, contentValues, mColumn[0] + "=?", new String[]{String.valueOf(produit.getId())});
-		Log.d(this.getClass().getName(), "Sortie");
-	}
+        mBDD.update(BDD.TN_PRODUIT, contentValues, mColumn[0] + "=?", new String[]{String.valueOf(produit.getId())});
+        Log.d(this.getClass().getName(), "Sortie");
+    }
 
     /**
      * Permet de mettre à jour un produit.
      *
      * @param id Identifiant d'un produit.
      */
-	@Override
-	public void delete(final Integer id) {
-		Log.d(this.getClass().getName(), "Entree");
-		mBDD.delete(BDD.TN_PRODUIT, mColumn[0] + "=?", new String[]{String.valueOf(id)});
-		Log.d(this.getClass().getName(), "Sortie");
-	}
+    @Override
+    public void delete(final Integer id) {
+        Log.d(this.getClass().getName(), "Entree");
+        mBDD.delete(BDD.TN_PRODUIT, mColumn[0] + "=?", new String[]{String.valueOf(id)});
+        Log.d(this.getClass().getName(), "Sortie");
+    }
 
     /**
      * Permet de définir une {@link fr.beber.bean.Produit} à partir du {@link android.database.Cursor}.
@@ -122,15 +124,15 @@ public class ProduitDAO extends Repository<Produit> {
      * @param cursor à convertir.
      * @return Un produit.
      */
-	@Override
-	public Produit convertCursorToObject(final Cursor cursor) {
+    @Override
+    public Produit convertCursorToObject(final Cursor cursor) {
 
-		final Produit exec = new Produit();
+        final Produit exec = new Produit();
 
-		exec.setId(cursor.getInt(BDD.PRODUIT_NUM_ID));
-		exec.setName(cursor.getString(BDD.PRODUIT_NUM_NAME));
-		
-		return exec;
-	}
-	
+        exec.setId(cursor.getInt(BDD.PRODUIT_NUM_ID));
+        exec.setName(cursor.getString(BDD.PRODUIT_NUM_NAME));
+
+        return exec;
+    }
+
 }

@@ -29,7 +29,6 @@ import java.util.List;
  * Cette classe permet de Créer la première page de la pre-alpha
  *
  * @author Beber46
- * @date 10/08/2014
  * @version 1.0
  */
 public class AccueilActivity extends Activity {
@@ -51,7 +50,7 @@ public class AccueilActivity extends Activity {
 
         final RecetteDAO recetteDAO = new RecetteDAO(this);
         recetteDAO.openOnlyRead();
-        if(recetteDAO.getAll().size()<1) {
+        if (recetteDAO.getAll().size() < 1) {
             recetteDAO.close();
             initBD.createRecetteMike(this);
             initBD.createRecetteMike(this);
@@ -83,14 +82,14 @@ public class AccueilActivity extends Activity {
     /**
      * Permet d'initialiser l'ActionBarDrawerToggle
      */
-    private void initMDrawer(){
+    private void initMDrawer() {
         final String[] mMenuStrings = getResources().getStringArray(R.array.drawer_menu);
         final DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         final ListView mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
         mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list, mMenuStrings));
-        mDrawerList.setOnItemClickListener(new DrawerItemClickListener(mDrawerLayout,mDrawerList));
-        mDrawerToggle = new ActionBarDrawerToggle( this, mDrawerLayout, R.drawable.ic_drawer,  R.string.drawer_open, R.string.drawer_close) {
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener(mDrawerLayout, mDrawerList));
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close) {
 
             /** Called when a drawer has settled in a completely closed state. */
             public void onDrawerClosed(View view) {
@@ -153,9 +152,9 @@ public class AccueilActivity extends Activity {
      * @param recetteList Liste de {@link fr.beber.bean.Recette}
      * @return Liste de nom de recette.
      */
-    private List<String> constructionListeRecette(final List<Recette> recetteList){
+    private List<String> constructionListeRecette(final List<Recette> recetteList) {
         final List<String> stringList = new ArrayList<String>();
-        for(Recette recette : recetteList)
+        for (Recette recette : recetteList)
             stringList.add(recette.getName());
 
         return stringList;

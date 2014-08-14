@@ -7,44 +7,45 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 /**
- * Classe BDD permettant des créer et mettre à jour la base de données. Elle permet également d'accéder aux constantes propres aux tables.
+ * Classe BDD permettant des créer et mettre à jour la base de données. Elle permet également d'accéder aux constantes
+ * propres aux tables.
  */
-public class BDD  extends SQLiteOpenHelper {
+public class BDD extends SQLiteOpenHelper {
 
     /**
      * Version de la base de données
      */
-	private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 1;
 
     /**
      * Nom du schéma
      */
-	private static final String BASE_NAME = "recipekit.db";
-	
-	/*******************************
-	 * Création de la table Produit
-	 */
-	public static final String TN_PRODUIT = "PRODUIT";
-	public static final String PRODUIT_COLUMN_ID = "_id";
-	public static final int PRODUIT_NUM_ID = 0;
-	public static final String PRODUIT_COLUMN_NAME = "NAME";
-	public static final int PRODUIT_NUM_NAME = 1;
+    private static final String BASE_NAME = "recipekit.db";
+
+    /**
+     * **************************** Création de la table Produit
+     */
+    public static final String TN_PRODUIT = "PRODUIT";
+    public static final String PRODUIT_COLUMN_ID = "_id";
+    public static final int PRODUIT_NUM_ID = 0;
+    public static final String PRODUIT_COLUMN_NAME = "NAME";
+    public static final int PRODUIT_NUM_NAME = 1;
 
     /**
      * Permet de construire la requête pour créer la table produit
      */
-	private static final String REQUETE_CREATION_PRODUIT = "CREATE TABLE "+TN_PRODUIT+" " +
-			"("+PRODUIT_COLUMN_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
-			+PRODUIT_COLUMN_NAME+" TEXT); ";
-	
-	/*******************************
-	 * Création de la table Recette
-	 */
-	public static final String TN_RECETTE = "RECETTE";
-	public static final String RECETTE_COLUMN_ID = "_id";
-	public static final int RECETTE_NUM_ID = 0;
-	public static final String RECETTE_COLUMN_NAME = "NAME";
-	public static final int RECETTE_NUM_NAME = 1;
+    private static final String REQUETE_CREATION_PRODUIT = "CREATE TABLE " + TN_PRODUIT + " " +
+            "(" + PRODUIT_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + PRODUIT_COLUMN_NAME + " TEXT); ";
+
+    /**
+     * **************************** Création de la table Recette
+     */
+    public static final String TN_RECETTE = "RECETTE";
+    public static final String RECETTE_COLUMN_ID = "_id";
+    public static final int RECETTE_NUM_ID = 0;
+    public static final String RECETTE_COLUMN_NAME = "NAME";
+    public static final int RECETTE_NUM_NAME = 1;
     public static final String RECETTE_COLUMN_PREPARATION = "PREPARATION";
     public static final int RECETTE_NUM_PREPARATION = 2;
     public static final String RECETTE_COLUMN_TEMPS_PREPARATION = "TEMPS_PREPARATION";
@@ -59,37 +60,37 @@ public class BDD  extends SQLiteOpenHelper {
     /**
      * Permet de construire la requête pour créer la table recette
      */
-	private static final String REQUETE_CREATION_RECETTE = "CREATE TABLE "+TN_RECETTE+" " +
-			"("+RECETTE_COLUMN_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
-			+RECETTE_COLUMN_NAME+" TEXT NOT NULL, "
-			+RECETTE_COLUMN_PREPARATION+" TEXT NOT NULL, "
-			+RECETTE_COLUMN_TEMPS_PREPARATION+" INTEGER NOT NULL, "
-			+RECETTE_COLUMN_TEMPS_CUISSON+" INTEGER, "
-			+RECETTE_COLUMN_NOTE+" INTEGER, "
-			+RECETTE_COLUMN_NB_PERSONNE+" INTEGER "
-            +"); ";
+    private static final String REQUETE_CREATION_RECETTE = "CREATE TABLE " + TN_RECETTE + " " +
+            "(" + RECETTE_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + RECETTE_COLUMN_NAME + " TEXT NOT NULL, "
+            + RECETTE_COLUMN_PREPARATION + " TEXT NOT NULL, "
+            + RECETTE_COLUMN_TEMPS_PREPARATION + " INTEGER NOT NULL, "
+            + RECETTE_COLUMN_TEMPS_CUISSON + " INTEGER, "
+            + RECETTE_COLUMN_NOTE + " INTEGER, "
+            + RECETTE_COLUMN_NB_PERSONNE + " INTEGER "
+            + "); ";
 
-	/*******************************
-	 * Création de la table Recette
-	 */
-	public static final String TN_UNIT = "UNIT";
-	public static final String UNIT_COLUMN_ID = "_id";
-	public static final int UNIT_NUM_ID = 0;
-	public static final String UNIT_COLUMN_NAME = "NAME";
-	public static final int UNIT_NUM_NAME = 1;
-	public static final String UNIT_COLUMN_ABREVIATION = "ABREVIATION";
-	public static final int UNIT_NUM_ABREVIATION = 2;
+    /**
+     * **************************** Création de la table Recette
+     */
+    public static final String TN_UNIT = "UNIT";
+    public static final String UNIT_COLUMN_ID = "_id";
+    public static final int UNIT_NUM_ID = 0;
+    public static final String UNIT_COLUMN_NAME = "NAME";
+    public static final int UNIT_NUM_NAME = 1;
+    public static final String UNIT_COLUMN_ABREVIATION = "ABREVIATION";
+    public static final int UNIT_NUM_ABREVIATION = 2;
 
     /**
      * Permet de construire la requête pour créer la table unité
      */
-	private static final String REQUETE_CREATION_UNIT = "CREATE TABLE "+TN_UNIT+" " +
-			"("+UNIT_COLUMN_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
-			+UNIT_COLUMN_ABREVIATION+" TEXT, "
-			+UNIT_COLUMN_NAME+" TEXT); ";
+    private static final String REQUETE_CREATION_UNIT = "CREATE TABLE " + TN_UNIT + " " +
+            "(" + UNIT_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + UNIT_COLUMN_ABREVIATION + " TEXT, "
+            + UNIT_COLUMN_NAME + " TEXT); ";
 
-    /*******************************
-     * Création de la table Composition
+    /**
+     * **************************** Création de la table Composition
      */
     public static final String TN_COMPOSITION = "COMPOSITION";
     public static final String COMPOSITION_COLUMN_ID = "_id";
@@ -106,36 +107,38 @@ public class BDD  extends SQLiteOpenHelper {
     /**
      * Permet de construire la requête pour créer la table composition
      */
-    private static final String REQUETE_CREATION_COMPOSITION = "CREATE TABLE "+TN_COMPOSITION+" " +
-            "("+COMPOSITION_COLUMN_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
-            +COMPOSITION_COLUMN_ID_PRODUIT+" INTEGER NOT NULL, "
-            +COMPOSITION_COLUMN_ID_RECETTE+" INTEGER NOT NULL, "
-            +COMPOSITION_COLUMN_QUANTITE+" FLOAT, "
-            +COMPOSITION_COLUMN_ID_UNIT+" INTEGER,"
-            + " FOREIGN KEY ("+COMPOSITION_COLUMN_ID_PRODUIT+") REFERENCES "+TN_PRODUIT+" ("+PRODUIT_COLUMN_ID+"),"
-            + " FOREIGN KEY ("+COMPOSITION_COLUMN_ID_RECETTE+") REFERENCES "+TN_RECETTE+" ("+RECETTE_COLUMN_ID+"),"
-            + " FOREIGN KEY ("+COMPOSITION_COLUMN_ID_UNIT+") REFERENCES "+TN_UNIT+" ("+UNIT_COLUMN_ID+")"
-            +"); ";
-
-	/**
-	 * Constructeur provenant de l'heritage
-	 * @param context Définit le contexte à utiliser.
-	 * @param factory Définit le factory à utiliser.
-	 */
-	public BDD(final Context context,final CursorFactory factory) {
-		super(context, BASE_NAME, factory, DATABASE_VERSION);
-	}
+    private static final String REQUETE_CREATION_COMPOSITION = "CREATE TABLE " + TN_COMPOSITION + " " +
+            "(" + COMPOSITION_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + COMPOSITION_COLUMN_ID_PRODUIT + " INTEGER NOT NULL, "
+            + COMPOSITION_COLUMN_ID_RECETTE + " INTEGER NOT NULL, "
+            + COMPOSITION_COLUMN_QUANTITE + " FLOAT, "
+            + COMPOSITION_COLUMN_ID_UNIT + " INTEGER,"
+            + " FOREIGN KEY (" + COMPOSITION_COLUMN_ID_PRODUIT + ") REFERENCES " + TN_PRODUIT + " (" + PRODUIT_COLUMN_ID + "),"
+            + " FOREIGN KEY (" + COMPOSITION_COLUMN_ID_RECETTE + ") REFERENCES " + TN_RECETTE + " (" + RECETTE_COLUMN_ID + "),"
+            + " FOREIGN KEY (" + COMPOSITION_COLUMN_ID_UNIT + ") REFERENCES " + TN_UNIT + " (" + UNIT_COLUMN_ID + ")"
+            + "); ";
 
     /**
      * Constructeur provenant de l'heritage
-     * @param context Définit le contexte à utiliser.
+     *
+     * @param context Le contexte courant.
+     * @param factory Définit le factory à utiliser.
      */
-    public BDD(final Context context) {
-        this(context,null);
+    public BDD(final Context context, final CursorFactory factory) {
+        super(context, BASE_NAME, factory, DATABASE_VERSION);
     }
 
-	@Override
-	public void onCreate(final SQLiteDatabase sqLiteDatabase) {
+    /**
+     * Constructeur provenant de l'heritage
+     *
+     * @param context Le contexte courant.
+     */
+    public BDD(final Context context) {
+        this(context, null);
+    }
+
+    @Override
+    public void onCreate(final SQLiteDatabase sqLiteDatabase) {
 
         sqLiteDatabase.execSQL(REQUETE_CREATION_PRODUIT);
 
@@ -145,26 +148,26 @@ public class BDD  extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL(REQUETE_CREATION_COMPOSITION);
 
-	}
+    }
 
     /**
      * Lorsque l'on change le numero de version de la base on supprime la table puis on la recree.
      *
      * @param sqLiteDatabase Nécessaire pour la méthode parente.
-     * @param oldVersion Ancienne version de la base de données.
-     * @param newVersion Nouvelle version de la base de données.
+     * @param oldVersion     Ancienne version de la base de données.
+     * @param newVersion     Nouvelle version de la base de données.
      */
-	@Override
-	public void onUpgrade(final SQLiteDatabase sqLiteDatabase, final int oldVersion, final int newVersion) {
+    @Override
+    public void onUpgrade(final SQLiteDatabase sqLiteDatabase, final int oldVersion, final int newVersion) {
 
-	    if (newVersion > DATABASE_VERSION) {
+        if (newVersion > DATABASE_VERSION) {
             Log.w(BDD.class.getName(), "Upgrading database from version " + oldVersion + " to " + newVersion + ", which will destroy all old data");
             sqLiteDatabase.execSQL("DROP TABLE IF EXISTS  " + TN_COMPOSITION + ";");
             sqLiteDatabase.execSQL("DROP TABLE IF EXISTS  " + TN_PRODUIT + ";");
             sqLiteDatabase.execSQL("DROP TABLE IF EXISTS  " + TN_RECETTE + ";");
             sqLiteDatabase.execSQL("DROP TABLE IF EXISTS  " + TN_UNIT + ";");
-	        this.onCreate(sqLiteDatabase);
-	    }
-	}
+            this.onCreate(sqLiteDatabase);
+        }
+    }
 
 }

@@ -11,15 +11,16 @@ public class Produit {
     /**
      * Identifiant du produit
      */
-	private Integer id;
+    private Integer id;
 
     /**
      * Nom du produit
      */
-	private String name;
+    private String name;
 
     /**
      * Permet d'obtenir l'identifiant du produit.
+     *
      * @return Un identifiant de produit.
      */
     public Integer getId() {
@@ -35,6 +36,7 @@ public class Produit {
 
     /**
      * Permet d'obtenir le nom du produit.
+     *
      * @return Le nom du produit.
      */
     public String getName() {

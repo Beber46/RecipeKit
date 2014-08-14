@@ -8,9 +8,8 @@ import android.widget.ListView;
 /**
  * Cette classe permet de créer l'évènement lorsque l'on clique sur l'un des champs du menu.
  *
- * @author Bertrand
+ * @author Beber046
  * @version 1.0
- * @date 10/08/2014
  */
 public class DrawerItemClickListener implements ListView.OnItemClickListener {
 
@@ -24,7 +23,7 @@ public class DrawerItemClickListener implements ListView.OnItemClickListener {
     }
 
     @Override
-    public void onItemClick(AdapterView parent, View view, int position, long id) {
+    public void onItemClick(final AdapterView parent,final View view, int position, long id) {
         mDrawerLayout.closeDrawer(mDrawerList);
     }
 

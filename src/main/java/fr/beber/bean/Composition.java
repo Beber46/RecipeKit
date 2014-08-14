@@ -34,6 +34,7 @@ public class Composition {
 
     /**
      * Permet d'obtenir l'identifiant de la composition.
+     *
      * @return Un identifiant de composition.
      */
     public Integer getId() {
@@ -49,6 +50,7 @@ public class Composition {
 
     /**
      * Permet d'obtenir le produit de la composition.
+     *
      * @return Le produit de la composition.
      */
     public Produit getProduit() {
@@ -64,6 +66,7 @@ public class Composition {
 
     /**
      * Permet d'obtenir l'identifiant de la recette.
+     *
      * @return Un identifiant de recette.
      */
     public Integer getIdRecette() {
@@ -79,6 +82,7 @@ public class Composition {
 
     /**
      * Permet d'obtenir la quantité de produit de la composition.
+     *
      * @return Quantité de produit.
      */
     public Float getQuantite() {
@@ -94,6 +98,7 @@ public class Composition {
 
     /**
      * Permet d'obtenir l'unité.
+     *
      * @return L'unité.
      */
     public Unit getUnit() {

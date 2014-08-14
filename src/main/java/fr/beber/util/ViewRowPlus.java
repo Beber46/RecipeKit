@@ -6,9 +6,8 @@ import android.widget.TextView;
 /**
  * Cette classe permet de
  *
- * @author Bertrand
+ * @author Beber046
  * @version 1.0
- * @date 12/08/2014
  */
 public class ViewRowPlus {
 
@@ -19,7 +18,7 @@ public class ViewRowPlus {
 
     }
 
-    public ViewRowPlus(final ImageView imageView,final TextView textView ) {
+    public ViewRowPlus(final ImageView imageView, final TextView textView) {
         this.imageView = imageView;
         this.textView = textView;
     }
