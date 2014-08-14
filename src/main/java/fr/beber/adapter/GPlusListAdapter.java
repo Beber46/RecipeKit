@@ -22,13 +22,13 @@ import java.util.List;
  */
 public abstract class GPlusListAdapter<T> extends BaseAdapter {
 
-    protected static final long ANIM_DEFAULT_SPEED = 1000L;
+    protected static final long ANIM_DEFAULT_SPEED = 1500L;
 
     protected Interpolator interpolator;
 
     protected SparseBooleanArray positionsMapper;
     protected List<T> items;
-    protected int size, /*height, width,*/ previousPostition;
+    protected int size, previousPostition;
     protected Point point;
     protected SpeedScrollListener scrollListener;
     protected double speed;
@@ -46,9 +46,7 @@ public abstract class GPlusListAdapter<T> extends BaseAdapter {
         previousPostition = -1;
         positionsMapper = new SparseBooleanArray(size);
         WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        /*width = windowManager.getDefaultDisplay().getWidth();
-        height = windowManager.getDefaultDisplay().getHeight();*/
-
+        point = new Point();
         windowManager.getDefaultDisplay().getSize(point);
 
         defineInterpolator();
@@ -92,7 +90,7 @@ public abstract class GPlusListAdapter<T> extends BaseAdapter {
             previousPostition = position;
 
             v.setTranslationX(0.0F);
-            v.setTranslationY(point.y);//TODO: vérifier que ca marche
+            v.setTranslationY(point.y);
             v.setRotationX(45.0F);
             v.setScaleX(0.7F);
             v.setScaleY(0.55F);
