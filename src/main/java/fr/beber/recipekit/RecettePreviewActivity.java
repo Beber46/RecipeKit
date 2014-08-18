@@ -1,14 +1,19 @@
 package fr.beber.recipekit;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.Window;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import fr.beber.bdd.dao.RecetteDAO;
 import fr.beber.bean.Composition;
 import fr.beber.bean.Recette;
 import fr.beber.util.Constantes;
+import fr.beber.util.ScrollChangedActionBar;
 
 /**
  * Cette classe permet d'afficher une préview de la recette
@@ -17,10 +22,19 @@ import fr.beber.util.Constantes;
  * @version 1.0
  */
 public class RecettePreviewActivity extends Activity {
+
     @Override
     public void onCreate(final Bundle savedInstanceState) {
+        this.getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recette_preview);
+
+        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.argb(0, 0, 0, 0)));
+
+        final ScrollView scrollView = (ScrollView) findViewById(R.id.scrollViewRecettePreview);
+        final ScrollChangedActionBar scrollChangedActionBar = new ScrollChangedActionBar(getActionBar(), scrollView);
+        scrollView.getViewTreeObserver().addOnScrollChangedListener(scrollChangedActionBar);
+
         getActionBar().setDisplayHomeAsUpEnabled(true);
         final Recette recette = this.getRecetteCookie();
 

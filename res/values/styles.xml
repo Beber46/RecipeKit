@@ -4,8 +4,8 @@
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
-    <style name="AppBaseTheme" parent="@style/Theme.AppCompat.Light">
-        <!--
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+    <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
@@ -18,37 +18,37 @@
     </style>
 
     <!-- the theme applied to the application or activity -->
-    <style name="CustomActionBarTheme"
+    <!--<style name="CustomActionBarTheme"
            parent="@style/Theme.AppCompat.Light">
-        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        &lt;!&ndash;<item name="android:actionBarStyle">@style/MyActionBar</item>&ndash;&gt;
         <item name="android:actionBarTabTextStyle">@style/TabTextStyle</item>
         <item name="android:actionMenuTextColor">@color/abc_search_url_text_holo</item>
 
-        <!-- Support library compatibility -->
-        <item name="actionBarStyle">@style/MyActionBar</item>
+        &lt;!&ndash; Support library compatibility &ndash;&gt;
+        &lt;!&ndash;<item name="actionBarStyle">@style/MyActionBar</item>&ndash;&gt;
         <item name="actionBarTabTextStyle">@style/TabTextStyle</item>
         <item name="actionMenuTextColor">@color/abc_search_url_text_holo</item>
-    </style>
+    </style>-->
 
     <!-- general styles for the action bar -->
-    <style name="MyActionBar"
+    <!--<style name="MyActionBar"
            parent="@style/Widget.AppCompat.ActionBar">
         <item name="android:titleTextStyle">@style/TitleTextStyle</item>
         <item name="android:background">@drawable/actionbar_background</item>
         <item name="android:backgroundStacked">@drawable/actionbar_background</item>
         <item name="android:backgroundSplit">@drawable/actionbar_background</item>
-    </style>
+    </style>-->
 
     <!-- action bar title text -->
-    <style name="TitleTextStyle"
+    <!--<style name="TitleTextStyle"
            parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/abc_search_url_text_holo</item>
     </style>
 
-    <!-- action bar tab text -->
+    &lt;!&ndash; action bar tab text &ndash;&gt;
     <style name="TabTextStyle"
            parent="@style/Widget.AppCompat.ActionBar.TabText">
         <item name="android:textColor">@color/abc_search_url_text_holo</item>
-    </style>
+    </style>-->
 
 </resources>

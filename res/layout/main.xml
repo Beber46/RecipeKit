@@ -35,7 +35,7 @@
             android:clickable="true"
             android:padding="10dp"
             android:divider="#ff898989"
-            android:background="#ff898989"
+            android:background="#ffe5e5e5"
             android:drawSelectorOnTop="false"/>
 
 </android.support.v4.widget.DrawerLayout>
