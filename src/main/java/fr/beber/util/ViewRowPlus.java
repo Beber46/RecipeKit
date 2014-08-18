@@ -5,48 +5,91 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 /**
- * Cette classe permet de
+ * Cette classe permet de Créer l'objet nécessaire pour la classe {@link fr.beber.adapter.StableArrayAdapter}. Il récupère une image, un titre et une note pour une recette.
  *
  * @author Beber046
  * @version 1.0
  */
 public class ViewRowPlus {
 
+    /**
+     * Image de la recette.
+     */
     private ImageView imageView;
+    /**
+     * Nom de la recette.
+     */
     private TextView textView;
+    /**
+     * Note de la recette.
+     */
     private RatingBar ratingBar;
 
+    /**
+     * Contructeur par défaut
+     */
     public ViewRowPlus() {
 
     }
 
+    /**
+     * Contructeur complet.
+     *
+     * @param imageView Image de la recette.
+     * @param textView Nom de la recette.
+     * @param ratingBar Note de la recette.
+     */
     public ViewRowPlus(final ImageView imageView, final TextView textView, final RatingBar ratingBar) {
         this.imageView = imageView;
         this.textView = textView;
         this.ratingBar = ratingBar;
     }
 
+    /**
+     * Permet de récupérer l'image de la recette.
+     * @return l'image de la recette.
+     */
     public ImageView getImageView() {
         return imageView;
     }
 
-    public void setImageView(ImageView imageView) {
+    /**
+     * Change l'image de la recette.
+     * @param imageView Image de la recette à changer.
+     */
+    public void setImageView(final ImageView imageView) {
         this.imageView = imageView;
     }
 
+    /**
+     * Permet de récupérer le nom de la recette.
+     * @return le nom de la recette.
+     */
     public TextView getTextView() {
         return textView;
     }
 
-    public void setTextView(TextView textView) {
+    /**
+     * Change le nom de la recette.
+     * @param textView Nom de la recette à changer.
+     */
+    public void setTextView(final TextView textView) {
         this.textView = textView;
     }
 
+    /**
+     * Permet de récupérer la note de la recette.
+     * @return la note de la recette.
+     */
     public RatingBar getRatingBar() {
         return ratingBar;
     }
 
-    public void setRatingBar(RatingBar ratingBar) {
+    /**
+     * Change la note de la recette.
+     * @param ratingBar Note de la recette.
+     */
+    public void setRatingBar(final RatingBar ratingBar) {
         this.ratingBar = ratingBar;
     }
 

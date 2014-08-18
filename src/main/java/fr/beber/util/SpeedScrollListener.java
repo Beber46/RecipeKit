@@ -4,7 +4,7 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 
 /**
- * Cette classe est utilisé pour {@link fr.beber.adapter.GPlusListAdapter}.
+ * Cette classe est utilisé pour {@link fr.beber.adapter.GPlusListAdapter}. Elle permet de calculer la vitesse de défillement de la scrollview.
  *
  * @author Beber046
  * @version 1.0
@@ -32,6 +32,11 @@ public class SpeedScrollListener implements OnScrollListener {
     public void onScrollStateChanged(final AbsListView view, int scrollState) {
     }
 
+    /**
+     * Permet d'obtenir la vitesse de défillement pour la scrollview.
+     *
+     * @return la vitesse calculée.
+     */
     public double getSpeed() {
         return speed;
     }

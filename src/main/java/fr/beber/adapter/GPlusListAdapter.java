@@ -3,6 +3,7 @@ package fr.beber.adapter;
 import android.content.Context;
 import android.graphics.Point;
 import android.util.SparseBooleanArray;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
@@ -10,6 +11,7 @@ import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.BaseAdapter;
+import fr.beber.recipekit.R;
 import fr.beber.util.SpeedScrollListener;
 
 import java.util.List;
@@ -20,7 +22,7 @@ import java.util.List;
  * @author Beber046
  * @version 1.0
  */
-public abstract class GPlusListAdapter<T> extends BaseAdapter {
+public class GPlusListAdapter<T> extends BaseAdapter {
 
     protected static final long ANIM_DEFAULT_SPEED = 1500L;
 
@@ -28,14 +30,21 @@ public abstract class GPlusListAdapter<T> extends BaseAdapter {
 
     protected SparseBooleanArray positionsMapper;
     protected List<T> items;
-    protected int size, previousPostition;
+    protected int size, previousPosition;
     protected Point point;
     protected SpeedScrollListener scrollListener;
     protected double speed;
     protected long animDuration;
-    protected View v;
+    protected View view;
     protected Context context;
 
+    /**
+     * Constructeur
+     *
+     * @param context Le contexte courant.
+     * @param scrollListener Animation pour la listeView.
+     * @param items liste de {@link T} à fournir p
+     */
     public GPlusListAdapter(Context context, SpeedScrollListener scrollListener, List<T> items) {
         this.context = context;
         this.scrollListener = scrollListener;
@@ -43,7 +52,7 @@ public abstract class GPlusListAdapter<T> extends BaseAdapter {
         if (items != null)
             size = items.size();
 
-        previousPostition = -1;
+        previousPosition = -1;
         positionsMapper = new SparseBooleanArray(size);
         final WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         point = new Point();
@@ -68,18 +77,27 @@ public abstract class GPlusListAdapter<T> extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        return getAnimatedView(position, convertView, parent);
+    public View getView(int position, final View convertView,final ViewGroup parent) {
+        return this.getAnimatedView(position, convertView, parent);
     }
 
     protected void defineInterpolator() {
         interpolator = new DecelerateInterpolator();
     }
 
-    public View getAnimatedView(int position, View convertView, ViewGroup parent) {
-        v = getRowView(position, convertView, parent);
+    /**
+     * Permet d'effectuer l'animation lors de la mise en place de la listeView.
+     *
+     * @param position Position de l'objet par rapport à à la liste renseignée.
+     * @param convertView Permet de récupérer la view nécessaire pour l'animation.
+     * @param parent Peut être nécessaire pour récupérer {@link View} de la listView.
+     * @return La vue récupérée pour l'animation.
+     */
+    //TODO: vérifier
+    private View getAnimatedView(int position,final View convertView,final ViewGroup parent) {
+        view = getRowView(position, convertView, parent);
 
-        if (v != null && !positionsMapper.get(position) && position > previousPostition) {
+        if (view != null && !positionsMapper.get(position) && position > previousPosition) {
             speed = scrollListener.getSpeed();
 
             animDuration = (((int) speed) == 0) ? ANIM_DEFAULT_SPEED : (long) (1 / speed * 15000);
@@ -87,37 +105,38 @@ public abstract class GPlusListAdapter<T> extends BaseAdapter {
             if (animDuration > ANIM_DEFAULT_SPEED)
                 animDuration = ANIM_DEFAULT_SPEED;
 
-            previousPostition = position;
+            previousPosition = position;
 
-            v.setTranslationX(0.0F);
-            v.setTranslationY(point.y);
-            v.setRotationX(45.0F);
-            v.setScaleX(0.7F);
-            v.setScaleY(0.55F);
+            view.setTranslationX(0.0F);
+            view.setTranslationY(point.y);
+            view.setRotationX(45.0F);
+            view.setScaleX(0.7F);
+            view.setScaleY(0.55F);
 
             ViewPropertyAnimator localViewPropertyAnimator =
-                    v.animate().rotationX(0.0F).rotationY(0.0F).translationX(0).translationY(0).setDuration(animDuration).scaleX(
+                    view.animate().rotationX(0.0F).rotationY(0.0F).translationX(0).translationY(0).setDuration(animDuration).scaleX(
                             1.0F).scaleY(1.0F).setInterpolator(interpolator);
 
             localViewPropertyAnimator.setStartDelay(0).start();
             positionsMapper.put(position, true);
         }
-        return v;
+        return view;
     }
 
     /**
-     * Get a View that displays the data at the specified position in the data set. You can either create a View
-     * manually or inflate it from an XML layout file. When the View is inflated, the parent View (GridView,
-     * ListView...) will apply default layout parameters unless you use {@link android.view.LayoutInflater#inflate(int,
-     * android.view.ViewGroup, boolean)} to specify a root view and to prevent attachment to the root.
+     * Retourne la view nécessaire pour l'animation.
      *
-     * @param position    The position of the item within the adapter's data set of the item whose view we want.
-     * @param convertView The old view to reuse, if possible. Note: You should check that this view is non-null and of
-     *                    an appropriate type before using. If it is not possible to convert this view to display the
-     *                    correct data, this method can create a new view.
-     * @param parent      The parent that this view will eventually be attached to
-     * @return A View corresponding to the data at the specified position.
+     * @param position    Position de l'objet par rapport à à la liste renseignée.
+     * @param convertView Permet de récupérer la view nécessaire pour l'animation.
+     * @param parent      Peut être nécessaire pour récupérer {@link View} de la listView.
+     * @return La vue récupérée.
      */
-    protected abstract View getRowView(int position, View convertView, ViewGroup parent);
+    protected View getRowView(int position, View convertView, ViewGroup parent){
+
+        if(convertView==null)
+            convertView = LayoutInflater.from(context).inflate(R.layout.gplus_row, parent, false);
+
+        return convertView;
+    }
 
 }

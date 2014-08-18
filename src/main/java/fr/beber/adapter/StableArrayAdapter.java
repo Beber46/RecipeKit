@@ -22,13 +22,26 @@ import java.util.List;
  */
 public class StableArrayAdapter extends GPlusListAdapter {
 
+    /**
+     * Liste de recette à rajouter dans la listView
+     */
     private List<Recette> recetteList;
 
+    /**
+     * Constructeur
+     *
+     * @param context Le contexte courant.
+     * @param scrollListener Animation pour la listeView.
+     * @param recetteList Liste de recette à rajouter.
+     */
     public StableArrayAdapter(final Context context, final SpeedScrollListener scrollListener, final List<Recette> recetteList) {
         super(context, scrollListener, recetteList);
         this.recetteList = recetteList;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected View getRowView(int position, View convertView, final ViewGroup parent) {
         ViewRowPlus viewRowPlus;
@@ -46,10 +59,11 @@ public class StableArrayAdapter extends GPlusListAdapter {
         return convertView;
     }
 
-    @Override
-    public boolean hasStableIds() {
-        return true;
-    }
+    //TODO:normalement il ne faut pas surcharger cette méthode
+//    @Override
+//    public boolean hasStableIds() {
+//        return true;
+//    }
 
 
 }
