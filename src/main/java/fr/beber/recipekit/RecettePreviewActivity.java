@@ -14,6 +14,9 @@ import fr.beber.bean.Composition;
 import fr.beber.bean.Recette;
 import fr.beber.util.Constantes;
 import fr.beber.util.ScrollChangedActionBar;
+import org.apache.commons.lang3.math.Fraction;
+
+import java.math.BigDecimal;
 
 /**
  * Cette classe permet d'afficher une préview de la recette
@@ -42,10 +45,10 @@ public class RecettePreviewActivity extends Activity {
         nomRecette.setText(recette.getName());
 
         final TextView tempsPreparation = (TextView) findViewById(R.id.textViewTempsPreparation);
-        tempsPreparation.setText("Temps de préparation : " + recette.getTempsPreparation().toString());
+        tempsPreparation.setText("Temps de préparation : " + recette.getTempsPreparation().toString() + " min");
 
         final TextView tempsCuisson = (TextView) findViewById(R.id.textViewTempsCuisson);
-        tempsCuisson.setText("Temps de cuisson : " + recette.getTempsCuisson().toString());
+        tempsCuisson.setText("Temps de cuisson : " + recette.getTempsCuisson().toString()+ " min");
 
         final TextView listeProduit = (TextView) findViewById(R.id.textViewProduit);
         listeProduit.setText("Ingrédients : " + Constantes.DOUBLE_LINE_SEPARATOR + this.constructionListeRecette(recette));
@@ -90,9 +93,33 @@ public class RecettePreviewActivity extends Activity {
             retour = retour + "- ";
             Log.d(this.getClass().getName(), " Composition ( " + composition.getId() + " ) :" + composition);
             final String abreviation = composition.getUnit() != null ? composition.getUnit().getAbreviation() + " " : "";
-            final String quantite = composition.getQuantite().compareTo(new Float(0)) > 0 ? composition.getQuantite() + " " : "";
+            final String quantite = this.reconstitueQuantite(composition.getQuantite());
             retour = retour + quantite + abreviation + composition.getProduit().getName() + Constantes.LINE_SEPARATOR;
         }
         return retour;
+    }
+
+    /**
+     * Permet de savoir si la quantite à besoin d'être transformée en fraction
+     * @param quantite à calculer
+     * @return La fraciton.
+     */
+    private String reconstitueQuantite(final Float quantite){
+
+        if(quantite.compareTo(new Float(0)) <= 0)
+            return "";
+
+        if(quantite.compareTo(new Float(1)) < 0) {
+            final Fraction fraction = Fraction.getFraction(quantite.doubleValue());
+            return fraction.toString() + " ";
+        }
+
+        final BigDecimal quantitevalue = new BigDecimal(quantite);
+        final BigDecimal floorvalue = quantitevalue.setScale(0, BigDecimal.ROUND_CEILING);
+
+        if(quantitevalue.compareTo(floorvalue) == 0)
+            return quantitevalue + " ";
+
+        return (new BigDecimal(quantite)).setScale(2, BigDecimal.ROUND_HALF_DOWN)+ " ";
     }
 }

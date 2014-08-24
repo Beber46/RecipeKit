@@ -25,7 +25,7 @@ import java.math.RoundingMode;
  */
 public class ScrollChangedActionBar implements ViewTreeObserver.OnScrollChangedListener {
 
-    private final BigDecimal MIN_SCROLL_Y = new BigDecimal(140);
+    private final BigDecimal MIN_SCROLL_Y = new BigDecimal(0);
     private final BigDecimal MAX_SCROLL_Y = new BigDecimal(229);
 
     private final BigDecimal MIN_ALPHA_COLOR = new BigDecimal(0);

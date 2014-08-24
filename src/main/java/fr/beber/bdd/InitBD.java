@@ -105,7 +105,7 @@ public class InitBD {
         produitDAO.save(produit);
 
         produit = new Produit();
-        produit.setName("Beure");
+        produit.setName("Beurre");
         produitDAO.save(produit);
 
         produit = new Produit();

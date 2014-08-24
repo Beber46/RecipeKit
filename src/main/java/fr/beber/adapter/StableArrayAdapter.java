@@ -55,15 +55,10 @@ public class StableArrayAdapter extends GPlusListAdapter {
 
         viewRowPlus.getTextView().setText(recetteList.get(position).getName());
         viewRowPlus.getRatingBar().setRating(recetteList.get(position).getNote());
+        viewRowPlus.getImageView().setMinimumWidth(convertView.getWidth());
 
         return convertView;
     }
-
-    //TODO:normalement il ne faut pas surcharger cette méthode
-//    @Override
-//    public boolean hasStableIds() {
-//        return true;
-//    }
 
 
 }

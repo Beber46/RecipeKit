@@ -12,6 +12,8 @@
             android:layout_height="200dp"
             android:layout_gravity="center_vertical"
             android:background="#ff000000"
+            android:adjustViewBounds="false"
+            android:scaleType="fitXY"
             android:src="@drawable/cookie"
             android:layout_margin="5dp"/>
 

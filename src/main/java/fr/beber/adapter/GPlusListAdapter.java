@@ -93,7 +93,6 @@ public class GPlusListAdapter<T> extends BaseAdapter {
      * @param parent Peut être nécessaire pour récupérer {@link View} de la listView.
      * @return La vue récupérée pour l'animation.
      */
-    //TODO: vérifier
     private View getAnimatedView(int position,final View convertView,final ViewGroup parent) {
         view = getRowView(position, convertView, parent);
 
